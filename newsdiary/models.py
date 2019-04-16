@@ -8,6 +8,8 @@ from django.contrib.postgres.fields import ArrayField
 from django.utils import timezone
 from enum import Enum
 from polymorphic.models import PolymorphicModel
+from markdownx.models import MarkdownxField
+
 
 # 필수 아닌 것들 한 번 더 체크하기
 # 마크다운
@@ -67,7 +69,7 @@ class Article(models.Model):
     press = models.CharField(max_length=20)
     title = models.CharField(max_length=50)
     sub_title = models.CharField(max_length=50, blank=True)
-    content = models.TextField()  # markdown?
+    content = MarkdownxField()
     issue = models.ForeignKey(Issue, on_delete=models.SET_NULL, related_name='articles', blank=True, null=True)
     event = models.ForeignKey(Event, on_delete=models.SET_NULL, related_name='articles', blank=True, null=True)
 
