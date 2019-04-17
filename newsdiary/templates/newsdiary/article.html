@@ -2,5 +2,13 @@
 
 {% block content %}
 <div>
+    언론사: {{ article.press }}
+    <h1>{{ article.title }}</h1>
+    작성일: {{article.created_at}}
+    {% if article.updated_at %}
+        | 수정일: {{article.updated_at}}
+    {% endif %}
+    
+
 </div>
 {% endblock content %}
