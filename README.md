@@ -1,6 +1,7 @@
 # mynewsdiary
 **Python** 3.6.8  
 **Django** 2.2  
+**Postgresql** 10.2  
 15/04/2019 ~  
   
 ## Before you start...

@@ -17,11 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from newsdiary import views
 from django.conf.urls import url, include
-from markdownx import urls as markdownx
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^markdownx/', include(markdownx))
     # path('', views.CalendarView.as_view(), name='calendar'),
 ]
