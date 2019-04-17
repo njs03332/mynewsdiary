@@ -16,11 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from newsdiary import views
-from django.conf.urls import url, include
+from django.conf.urls import include
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', views.CalendarView.as_view(), name='calendar'),
+    path('<int:pk>/', views.CalendarView.as_view(), name='calendar'),
+    path('accounts/signup/', views.SignUpView.as_view(), name='signup'),
+
 ]
