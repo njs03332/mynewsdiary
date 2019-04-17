@@ -1,5 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-calendar view to be made
+{% load custom_tags %}
+<h1>Calendar page</h1>
+    {{view.year}}년 {{view.month}}월
+    <a href="{% url 'calendar' view.before %}"">이전달</a>
+    <a href="{% url 'calendar' view.after %}">다음달</a>
+    {% for day in view.days %}
+        <p>
+            {{ day }}일
+            {% for event in view.day_events|index:day %}
+                <p>제목: {{ event.title }}</p>
+                <p>분야: {{ event.get_category_display }}</p>
+                {% if event.concept %}
+                    <p>개념: {{ event.concept }}</p>
+                {% endif %}
+                {% if event.background %}
+                    <p>배경: {{ event.background }}</p>
+                {% endif %}
+                {% if event.importance %}
+                    <p>왜 중요해?: {{ event.importance }}</p>
+                {% endif %}
+                {% for a in event.top_article.all %}
+                    <p>관련 대표 기사: {{ event.top_article }}</p>
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    </p>        
 {% endblock content %}

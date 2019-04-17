@@ -10,9 +10,6 @@ from enum import Enum
 from polymorphic.models import PolymorphicModel
 from django.urls import reverse
 
-
-
-# 필수 아닌 것들 한 번 더 체크하기
 # 캘린더 API
 # seeding
 
@@ -35,16 +32,21 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
-class Category(Enum):
-    POL = "정치"
-    SOC = "사회"
-    ECON = "경제"
+# class Category(Enum):
+#     POL = "정치"
+#     SOC = "사회"
+#     ECON = "경제"
 
 class Issue(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=50)
-    explanation = models.TextField(blank=True)  #markdown?
-    categories = ArrayField(models.CharField(max_length=20, choices=[(tag, tag.value) for tag in Category]), default=list)
+    explanation = models.TextField(blank=True)
+    CATEGORIES = (
+        ('POL', "정치"),
+        ('SOC', "사회"),
+        ('ECON', "경제"),
+    )
+    categories = ArrayField(models.CharField(max_length=20, choices=CATEGORIES), default=list)
     # related_dates = ArrayField(models.DateField())  # 캘린더 상에 
     followers = models.ManyToManyField(User, related_name='following_issues', blank=True)
 
@@ -58,8 +60,13 @@ class Event(models.Model):
     concept = models.TextField(blank=True)
     background = models.TextField(blank=True)
     importance = models.TextField(blank=True)
-    explanation = models.TextField(blank=True)  #markdown?
-    category = models.CharField(max_length=20, choices=[(tag, tag.value) for tag in Category])
+    explanation = models.TextField(blank=True)
+    CATEGORIES = (
+        ('POL', "정치"),
+        ('SOC', "사회"),
+        ('ECON', "경제"),
+    )
+    category = models.CharField(max_length=20, choices=CATEGORIES)
     issue = models.ForeignKey(Issue, on_delete=models.SET_NULL, related_name='events', blank=True, null=True)
 
     def __str__(self):

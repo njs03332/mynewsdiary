@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('datetime', models.DateTimeField()),
                 ('title', models.CharField(max_length=50)),
                 ('explanation', models.TextField(blank=True)),
-                ('category', models.CharField(choices=[(newsdiary.models.Category('정치'), '정치'), (newsdiary.models.Category('사회'), '사회'), (newsdiary.models.Category('경제'), '경제')], max_length=5)),
+                ('category', models.CharField(max_length=5)),
             ],
         ),
         migrations.CreateModel(
@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('title', models.CharField(max_length=50)),
                 ('explanation', models.TextField(blank=True)),
-                ('categories', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(choices=[(newsdiary.models.Category('정치'), '정치'), (newsdiary.models.Category('사회'), '사회'), (newsdiary.models.Category('경제'), '경제')], max_length=5), size=None)),
+                ('categories', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=5), size=None)),
             ],
         ),
         migrations.CreateModel(

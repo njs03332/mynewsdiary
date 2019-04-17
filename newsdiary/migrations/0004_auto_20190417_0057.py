@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='issue',
             name='categories',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(choices=[(newsdiary.models.Category('정치'), '정치'), (newsdiary.models.Category('사회'), '사회'), (newsdiary.models.Category('경제'), '경제')], max_length=5), default=list, size=None),
+            field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=5), default=list, size=None),
         ),
         migrations.AddField(
             model_name='issue',
