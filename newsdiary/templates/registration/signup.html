@@ -1,11 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Sign up</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="hidden" name="next" value="{{next}}" />
-        <input type="submit">회원가입</button>
-    </form>
+<div class="form-registration-wrapper">
+    <div class="form-registration">
+        <div class="text-center mb-4">
+            <h1>Sign up</h1>
+        </div>
+        <form method="POST" action="{%url 'signup'%}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input name="username" type="name" class="form-control" placeholder="Username">
+                <!--small id="usernameHelp" class="form-text text-muted">150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.</small-->
+            </div>
+
+            <div class="form-group">
+                <input name="password1" type="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input name="password2" type="password" class="form-control" placeholder="Password Check">
+            </div>
+            <button type="submit" class="btn btn-lg btn-dark btn-block">회원가입</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

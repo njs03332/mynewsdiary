@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sass_processor', # for sass preprocessor
     'newsdiary.apps.NewsdiaryConfig',
 ]
 
@@ -128,5 +129,16 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+
+# SASS processor settings
+# https://github.com/jrief/django-sass-processor
+SASS_PROCESSOR_ENABLED = True
+SASS_PROCESSOR_ROOT = STATIC_ROOT
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+
+]
 
 LOGIN_REDIRECT_URL = "/"
