@@ -4,7 +4,7 @@
 {% load custom_tags %}
 <h1>Calendar page</h1>
     {{view.year}}년 {{view.month}}월
-    <a href="{% url 'calendar' view.before %}"">이전달</a>
+    <a href="{% url 'calendar' view.before %}">이전달</a>
     <a href="{% url 'calendar' view.after %}">다음달</a>
     {% for day in view.days %}
         <p>
@@ -25,6 +25,6 @@
                     <p>관련 대표 기사: {{ event.top_article }}</p>
                 {% endfor %}
             {% endfor %}
-        {% endfor %}
-    </p>        
+        </p> 
+    {% endfor %}       
 {% endblock content %}
