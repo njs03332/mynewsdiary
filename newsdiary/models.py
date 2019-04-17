@@ -8,6 +8,8 @@ from django.contrib.postgres.fields import ArrayField
 from django.utils import timezone
 from enum import Enum
 from polymorphic.models import PolymorphicModel
+from django.urls import reverse
+
 
 
 # 필수 아닌 것들 한 번 더 체크하기

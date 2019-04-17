@@ -21,5 +21,6 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', views.CalendarView.as_view(), name='calendar'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', views.CalendarView.as_view(), name='calendar'),
 ]
