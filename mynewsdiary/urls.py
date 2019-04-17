@@ -22,8 +22,8 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', views.CalendarView.as_view(), name='calendar'),
-    path('<int:pk>/', views.CalendarView.as_view(), name='calendar'),
+    path('', views.temp, name='temp'),
+    path('calendar/<int:pk>/', views.CalendarView.as_view(), name='calendar'),
     path('accounts/signup/', views.SignUpView.as_view(), name='signup'),
 
 ]

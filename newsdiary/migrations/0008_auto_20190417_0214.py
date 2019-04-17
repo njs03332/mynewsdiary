@@ -15,11 +15,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='event',
             name='category',
-            field=models.CharField(choices=[(newsdiary.models.Category('정치'), '정치'), (newsdiary.models.Category('사회'), '사회'), (newsdiary.models.Category('경제'), '경제')], max_length=20),
+            field=models.CharField(max_length=20),
         ),
         migrations.AlterField(
             model_name='issue',
             name='categories',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(choices=[(newsdiary.models.Category('정치'), '정치'), (newsdiary.models.Category('사회'), '사회'), (newsdiary.models.Category('경제'), '경제')], max_length=20), default=list, size=None),
+            field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=20), default=list, size=None),
         ),
     ]

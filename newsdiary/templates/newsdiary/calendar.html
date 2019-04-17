@@ -1,5 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-calendar view to be made
+<h1>Calendar page</h1>
+
+    {% for event in events %}
+        <div style="border: 1px solid grey;">
+            <p>{{ event.title }}</p>
+            <p>분야: {{ event.get_category_display() }}</p>
+            {% if event.concept %}
+                <p>개념: {{ event.concept }}</p>
+            {% endif %}
+            {% if event.background %}
+                <p>배경: {{ event.background }}</p>
+            {% endif %}
+            {% if event.importance %}
+                <p>왜 중요해?: {{ event.importance }}</p>
+            {% endif %}
+            {% for a in event.top_article.all %}
+                <p>관련 대표 기사: {{ event.top_article }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
 {% endblock content %}
