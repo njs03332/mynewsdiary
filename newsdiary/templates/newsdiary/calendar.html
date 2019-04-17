@@ -3,7 +3,8 @@
 {% block content %}
 {% load custom_tags %}
 <h1>Calendar page</h1>
-    {{view.year}}년 {{view.month}}월
+    {{view.year}}년 {{view.month}}월<br>
+    1일은 {{view.weekday}}번째 요일
     <a href="{% url 'calendar' view.before %}"">이전달</a>
     <a href="{% url 'calendar' view.after %}">다음달</a>
     {% for day in view.days %}
