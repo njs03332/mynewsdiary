@@ -39,8 +39,24 @@
                         <!---small class="col d-sm-none text-center text-muted">{{view.weekday}}</small-->
                         <span class="col-1"></span>
                     </h5>
+                    <!-- event label 스타일 먹이는 효율적인 방법 찾기........ㅠㅠㅠㅠㅠㅠ-->
                     {% for event in view.day_events|index:day %}
-                        <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-info text-white" title="Test Event 1" data-toggle="modal" data-target="#exampleModalCenter">{{ event.title }}</a>
+                        {% if event.get_category_display == '정치' %}
+                            <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-danger text-white" 
+                            data-toggle="modal" data-target="#eventModal" data-title='{{ event.title }}'
+                            data-category='{{ event.get_category_display }}' data-concept='{{ event.concept }}' data-background='{{ event.background }}'
+                            data-importance='{{ event.importance }}' data-article='{{ event.top_article }}'>{{ event.title }}</a>
+                        {% elif event.get_category_display == '사회' %}
+                            <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-warning text-white" 
+                            data-toggle="modal" data-target="#eventModal" data-title='{{ event.title }}'
+                            data-category='{{ event.get_category_display }}' data-concept='{{ event.concept }}' data-background='{{ event.background }}'
+                            data-importance='{{ event.importance }}' data-article='{{ event.top_article }}'>{{ event.title }}</a>
+                        {% elif event.get_category_display == '경제' %}
+                            <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-success text-white" 
+                            data-toggle="modal" data-target="#eventModal" data-title='{{ event.title }}'
+                            data-category='{{ event.get_category_display }}' data-concept='{{ event.concept }}' data-background='{{ event.background }}'
+                            data-importance='{{ event.importance }}' data-article='{{ event.top_article }}'>{{ event.title }}</a>
+                        {% endif %}
                     {% endfor %}
                     {% comment %} <p class="d-sm-none">No events</p> {% endcomment %}
                 </div>
@@ -61,54 +77,44 @@
             {% endfor %}
         </div>
     </div>
+
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-event-title d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate text-white" id="exampleModalLongTitle">Modal event title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                            <th scope="row modal-row">분야</th>
+                            <td><span class="modal-event-category">분야</span></td>
+                            </tr>
+                            <tr>
+                            <th scope="row modal-row">개념</th>
+                            <td><span class="modal-event-concept">개념</span></td>
+                            </tr>
+                            <tr>
+                            <th scope="row modal-row">배경</th>
+                            <td><span class="modal-event-background">배경</span></td>
+                            </tr>
+                            <tr>
+                            <th scope="row modal-row">왜 중요해?</th>
+                            <td><span class="modal-event-importance">중요</span></td>
+                            </tr>
+                            <tr>
+                            <th scope="row modal-row">대표 기사</th>
+                            <td><span class="modal-event-article">기사</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
     {% endblock content %}
-
-
-
-    {% comment %} <h1>Calendar page</h1>
-        {{view.year}}년 {{view.month}}월<br>
-        1일은 {{view.weekday}}번째 요일
-        <a href="{% url 'calendar' view.before %}"">이전달</a>
-        <a href="{% url 'calendar' view.after %}">다음달</a>
-        {% for day in view.days %}
-            <p>
-                {{ day }}일
-                {% for event in view.day_events|index:day %}
-                    <p>제목: {{ event.title }}</p>
-                    <p>분야: {{ event.get_category_display }}</p>
-                    {% if event.concept %}
-                        <p>개념: {{ event.concept }}</p>
-                    {% endif %}
-                    {% if event.background %}
-                        <p>배경: {{ event.background }}</p>
-                    {% endif %}
-                    {% if event.importance %}
-                        <p>왜 중요해?: {{ event.importance }}</p>
-                    {% endif %}
-                    {% for a in event.top_article.all %}
-                        <p>관련 대표 기사: {{ event.top_article }}</p>
-                    {% endfor %}
-            {% endfor %}   
-        </p>     
-    {% endfor %}
-{% endblock content %} {% endcomment %}

@@ -14,4 +14,10 @@
   left: 0;
   z-index: 1030; }
 
+.tab-icon {
+  color: lightgrey; }
+
+.tab-active {
+  color: #5699E3; }
+
 /*# sourceMappingURL=layout.css.map */

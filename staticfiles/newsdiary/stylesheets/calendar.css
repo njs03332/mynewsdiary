@@ -13,10 +13,20 @@
 .date {
   font-weight: 300; }
 
+table {
+  table-layout: fixed; }
+
+.modal-row {
+  width: 30%;
+  text-align: right !important; }
+
+h5 {
+  margin-bottom: 0; }
+
 @media (max-width: 575px) {
   .month {
     font-size: 1.2rem; }
-  h5 {
+  .week {
     font-size: small; }
   .day h5 {
     font-size: small;
@@ -25,6 +35,7 @@
   .day {
     height: 22vw; }
   .date {
+    font-size: small;
     padding-left: 4px; }
   .event {
     font-size: .1rem;
