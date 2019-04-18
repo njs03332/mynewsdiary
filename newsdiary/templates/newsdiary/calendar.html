@@ -18,14 +18,19 @@
             </div>
         </header>
         <div class="row border border-right-0 border-bottom-0">
-            <div class="day col p-2 border border-left-0 border-top-0 text-truncate d-sm-inline-block bg-light text-muted">
-                <h5 class="row align-items-center">
-                    <span class="date col-1"></span>
-                    <small class="col d-sm-none text-center text-muted"></small>
-                    <span class="col-1"></span>
-                </h5>
-                <!--p class="d-sm-none">No events</p-->
-            </div>
+            <!-- 첫째 날 채우기 -->
+
+                {% for i in view.weekday|fisttimes %}
+                    <div class="day col p-2 border border-left-0 border-top-0 text-truncate d-sm-inline-block bg-light text-muted">
+                        <h5 class="row align-items-center">
+                            {% comment %} <span class="date col-1">29</span> {% endcomment %}
+                            {% comment %} <small class="col d-sm-none text-center text-muted">Sunday</small> {% endcomment %}
+                            <span class="col-1"></span>
+                        </h5>
+                        {% comment %} <p class="d-sm-none">No events</p> {% endcomment %}
+                    </div>
+                {% endfor %}
+
             {% for day in view.days %}
                 <div class="day col p-2 border border-left-0 border-top-0 text-truncate ">
                     <h5 class="row align-items-center">
@@ -40,35 +45,46 @@
                     <div class="w-100"></div>
                 {% endif %}
             {% endfor %}
+            <!-- 마지막 날 채우기 -->
+            {% for i in view.last_weekday|lasttimes %}
+                <div class="day col p-2 border border-left-0 border-top-0 text-truncate d-sm-inline-block bg-light text-muted">
+                    <h5 class="row align-items-center">
+                        {% comment %} <span class="date col-1">29</span> {% endcomment %}
+                        {% comment %} <small class="col d-sm-none text-center text-muted">Sunday</small> {% endcomment %}
+                        <span class="col-1"></span>
+                    </h5>
+                    {% comment %} <p class="d-sm-none">No events</p> {% endcomment %}
+                </div>
+            {% endfor %}
+            </div>
         </div>
-    </div>
-{% endblock content %}
+    {% endblock content %}
 
 
 
-{% comment %} <h1>Calendar page</h1>
-    {{view.year}}년 {{view.month}}월<br>
-    1일은 {{view.weekday}}번째 요일
-    <a href="{% url 'calendar' view.before %}"">이전달</a>
-    <a href="{% url 'calendar' view.after %}">다음달</a>
-    {% for day in view.days %}
-        <p>
-            {{ day }}일
-            {% for event in view.day_events|index:day %}
-                <p>제목: {{ event.title }}</p>
-                <p>분야: {{ event.get_category_display }}</p>
-                {% if event.concept %}
-                    <p>개념: {{ event.concept }}</p>
-                {% endif %}
-                {% if event.background %}
-                    <p>배경: {{ event.background }}</p>
-                {% endif %}
-                {% if event.importance %}
-                    <p>왜 중요해?: {{ event.importance }}</p>
-                {% endif %}
-                {% for a in event.top_article.all %}
-                    <p>관련 대표 기사: {{ event.top_article }}</p>
-                {% endfor %}
+    {% comment %} <h1>Calendar page</h1>
+        {{view.year}}년 {{view.month}}월<br>
+        1일은 {{view.weekday}}번째 요일
+        <a href="{% url 'calendar' view.before %}"">이전달</a>
+        <a href="{% url 'calendar' view.after %}">다음달</a>
+        {% for day in view.days %}
+            <p>
+                {{ day }}일
+                {% for event in view.day_events|index:day %}
+                    <p>제목: {{ event.title }}</p>
+                    <p>분야: {{ event.get_category_display }}</p>
+                    {% if event.concept %}
+                        <p>개념: {{ event.concept }}</p>
+                    {% endif %}
+                    {% if event.background %}
+                        <p>배경: {{ event.background }}</p>
+                    {% endif %}
+                    {% if event.importance %}
+                        <p>왜 중요해?: {{ event.importance }}</p>
+                    {% endif %}
+                    {% for a in event.top_article.all %}
+                        <p>관련 대표 기사: {{ event.top_article }}</p>
+                    {% endfor %}
             {% endfor %}   
         </p>     
     {% endfor %}

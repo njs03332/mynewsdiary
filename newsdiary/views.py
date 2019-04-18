@@ -65,6 +65,7 @@ class CalendarView(LoginRequiredMixin, ListView):
             if day % 7 == 6 - self.weekday():
                 ret.append(day)
         return ret
+        
     def last_weekday(self):
         return datetime.datetime(self.year(), self.month(), monthrange(self.year(), self.month())[1]).weekday()
 
