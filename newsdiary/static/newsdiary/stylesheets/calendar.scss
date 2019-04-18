@@ -18,13 +18,26 @@
     font-weight: 300;
 }
 
+// modal
+table {
+    table-layout: fixed;
+}
+
+.row {
+    width: 30%;
+    text-align: right !important;
+}
+
+h5 {
+    margin-bottom: 0;
+}
 
 @media (max-width:575px) {
     .month {
         font-size: 1.2rem;
     }
 
-    h5  {
+    .week {
         font-size: small;
     }
 
@@ -39,6 +52,7 @@
     }
 
     .date {
+        font-size: small;
         padding-left: 4px;
     }
 
