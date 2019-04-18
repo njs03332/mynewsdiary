@@ -2,52 +2,27 @@
 
 {% block content %}
 {% load custom_tags %}
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_left</i></a>
+        <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
+        <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_right</i></a>   
+    </nav>
     <div class="container-fluid">
         <header>
-            <h4 class="display-4 mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
-            <a href="{% url 'calendar' view.before %}">이전달</a>
-            <a href="{% url 'calendar' view.after %}">다음달</a>
-            <div class="row d-sm-flex p-1 bg-dark text-white">
-            <h5 class="col p-1 text-center">일</h5>
-            <h5 class="col p-1 text-center">월</h5>
-            <h5 class="col p-1 text-center">화</h5>
-            <h5 class="col p-1 text-center">수</h5>
-            <h5 class="col p-1 text-center">목</h5>
-            <h5 class="col p-1 text-center">금</h5>
-            <h5 class="col p-1 text-center">토</h5>
+            <div class="row d-sm-flex p-1">
+            <h5 class="week col p-1 text-center">일</h5>
+            <h5 class="week col p-1 text-center">월</h5>
+            <h5 class="week col p-1 text-center">화</h5>
+            <h5 class="week col p-1 text-center">수</h5>
+            <h5 class="week col p-1 text-center">목</h5>
+            <h5 class="week col p-1 text-center">금</h5>
+            <h5 class="week col p-1 text-center">토</h5>
             </div>
         </header>
         <div class="row border border-right-0 border-bottom-0">
             <!-- 첫째 날 채우기 -->
-
-                {% for i in view.weekday|fisttimes %}
-                    <div class="day col p-2 border border-left-0 border-top-0 text-truncate d-sm-inline-block bg-light text-muted">
-                        <h5 class="row align-items-center">
-                            {% comment %} <span class="date col-1">29</span> {% endcomment %}
-                            {% comment %} <small class="col d-sm-none text-center text-muted">Sunday</small> {% endcomment %}
-                            <span class="col-1"></span>
-                        </h5>
-                        {% comment %} <p class="d-sm-none">No events</p> {% endcomment %}
-                    </div>
-                {% endfor %}
-
-            {% for day in view.days %}
-                <div class="day col p-2 border border-left-0 border-top-0 text-truncate ">
-                    <h5 class="row align-items-center">
-                        <span class="date col-1">{{ day }}</span>
-                        <!---small class="col d-sm-none text-center text-muted">{{view.weekday}}</small-->
-                        <span class="col-1"></span>
-                    </h5>
-                    <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-info text-white" title="Test Event 1">Test Event 1</a>
-                    {% comment %} <p class="d-sm-none">No events</p> {% endcomment %}
-                </div>
-                {% if day in view.saturday %}
-                    <div class="w-100"></div>
-                {% endif %}
-            {% endfor %}
-            <!-- 마지막 날 채우기 -->
-            {% for i in view.last_weekday|lasttimes %}
-                <div class="day col p-2 border border-left-0 border-top-0 text-truncate d-sm-inline-block bg-light text-muted">
+            {% for i in view.weekday|fisttimes %}
+                <div class="day col p-1 border border-left-0 border-top-0 text-truncate d-sm-inline-block bg-light text-muted">
                     <h5 class="row align-items-center">
                         {% comment %} <span class="date col-1">29</span> {% endcomment %}
                         {% comment %} <small class="col d-sm-none text-center text-muted">Sunday</small> {% endcomment %}
@@ -56,8 +31,56 @@
                     {% comment %} <p class="d-sm-none">No events</p> {% endcomment %}
                 </div>
             {% endfor %}
+            <!-- 나머지 날짜 -->
+            {% for day in view.days %}
+                <div class="day col p-1 border border-left-0 border-top-0 text-truncate ">
+                    <h5 class="row align-items-center">
+                        <span class="date col-1">{{ day }}</span>
+                        <!---small class="col d-sm-none text-center text-muted">{{view.weekday}}</small-->
+                        <span class="col-1"></span>
+                    </h5>
+                    {% for event in view.day_events|index:day %}
+                        <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-info text-white" title="Test Event 1" data-toggle="modal" data-target="#exampleModalCenter">{{ event.title }}</a>
+                    {% endfor %}
+                    {% comment %} <p class="d-sm-none">No events</p> {% endcomment %}
+                </div>
+                {% if day in view.saturday %}
+                    <div class="w-100"></div>
+                {% endif %}
+            {% endfor %}
+            <!-- 마지막 날 채우기 -->
+            {% for i in view.last_weekday|lasttimes %}
+                <div class="day col p-1 border border-left-0 border-top-0 text-truncate d-sm-inline-block bg-light text-muted">
+                    <h5 class="row align-items-center">
+                        {% comment %} <span class="date col-1">29</span> {% endcomment %}
+                        {% comment %} <small class="col d-sm-none text-center text-muted">Sunday</small> {% endcomment %}
+                        <span class="col-1"></span>
+                    </h5>
+                    {% comment %} <p class="d-sm-none">No events</p> {% endcomment %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
             </div>
         </div>
+    </div>
     {% endblock content %}
 
 
