@@ -26,5 +26,4 @@ urlpatterns = [
     path('calendar/<int:pk>/', views.CalendarView.as_view(), name='calendar'),
     path('accounts/signup/', views.SignUpView.as_view(), name='signup'),
 	path('articles/<int:pk>/', views.ArticleDetailView.as_view(), name='article'),
-
 ]

@@ -4,11 +4,14 @@
 <div>
     언론사: {{ article.press }}
     <h1>{{ article.title }}</h1>
-    작성일: {{article.created_at}}
+    작성일: {{article.created_at}}<br>
     {% if article.updated_at %}
         | 수정일: {{article.updated_at}}
     {% endif %}
-    
+
+    {% if article.id == 1 %}
+        {% include 'newsdiary/article/article1.html' %}
+    {% endif %}
 
 </div>
 {% endblock content %}
