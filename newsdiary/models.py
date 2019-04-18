@@ -45,6 +45,7 @@ class Issue(models.Model):
         ('POL', "정치"),
         ('SOC', "사회"),
         ('ECON', "경제"),
+        ('WRD', "세계"),
     )
     categories = ArrayField(models.CharField(max_length=20, choices=CATEGORIES), default=list)
     # related_dates = ArrayField(models.DateField())  # 캘린더 상에 
@@ -65,6 +66,7 @@ class Event(models.Model):
         ('POL', "정치"),
         ('SOC', "사회"),
         ('ECON', "경제"),
+        ('WRD', "세계"),
     )
     category = models.CharField(max_length=20, choices=CATEGORIES)
     issue = models.ForeignKey(Issue, on_delete=models.SET_NULL, related_name='events', blank=True, null=True)
