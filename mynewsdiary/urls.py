@@ -26,4 +26,17 @@ urlpatterns = [
     path('calendar/<int:pk>/', views.CalendarView.as_view(), name='calendar'),
     path('accounts/signup/', views.SignUpView.as_view(), name='signup'),
 	path('articles/<int:pk>/', views.ArticleDetailView.as_view(), name='article'),
+    path('preview/', views.PreviewView.as_view(), name='preview'),
+    path('review/', views.ReviewView.as_view(), name='review'),
+    path('follow/<int:pk>/', views.follow, name='follow'),
+    path('unfollow/<int:pk>/', views.unfollow, name='unfollow'),
+    path('new/article/', views.CreateMemoArticleView.as_view(), name='new_a'),
+    path('new/article/<int:pk>/', views.CreateMemoArticleView.as_view(), name='new_a'),
+    path('new/issue/', views.CreateMemoIssueView.as_view(), name='new_i'),
+    path('new/issue/<int:pk>/', views.CreateMemoIssueView.as_view(), name='new_i'),
+    path('memos/', views.MemoListView.as_view(), name='memos'),
+    path('issues/', views.IssueListView.as_view(), name='issues'),
+    path('memos/issue/<int:pk>/', views.MemoIssueListView.as_view(), name='memo_issue'),
+    path('memos/<int:pk>/', views.MemoDetailView.as_view(), name='memo'),
+
 ]

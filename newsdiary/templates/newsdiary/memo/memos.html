@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load custom_tags %}
+<a href="{% url 'issues' %}">이슈별로 보기</a><br>
+{% for memo in memos %}
+    <div>
+        {{ memo.created_at|date_only }}
+        <div style="color: gray;">
+            {% if memo.issue %}
+                # {{ memo.issue.title }}
+            {% elif memo.article %}
+                {{ memo.article.title }}
+            {% endif %}
+        </div>
+        <a href="{% url 'memo' memo.id %}">{{ memo.title }}</a>
+    </div>
+{% endfor %}
+{% endblock content %}

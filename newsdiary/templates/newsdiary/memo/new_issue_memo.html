@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="{% url 'new_i' view.issue.id %}" method="POST">  
+        {% csrf_token %}
+        <p>제목</p>
+        <input name="title" /> <br />
+        <strong>{{ view.issue.title }}</strong> 이슈에 대한 메모
+        <p>내용</p>
+        <input name="content" /> <br />
+        <input type="submit" value="submit" />
+    </form>
+{% endblock content %}

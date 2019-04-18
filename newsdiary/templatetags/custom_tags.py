@@ -1,9 +1,25 @@
 from django import template
+from newsdiary.models import Issue
+from datetime import datetime
 register = template.Library()
 
 @register.filter
 def index(List, i):
     return List[int(i)]
+
+@register.filter
+def length(QuerySet):
+    return QuerySet.count()
+
+@register.filter
+def events(Issue):
+    return Issue.events.all()
+
+@register.filter
+def date_only(datetime):
+    arr = str(datetime.date()).split('-')
+    ret = arr[1] + '/' + arr[2]
+    return ret
 
 # for calendar template range
 @register.filter(name='fisttimes') 
