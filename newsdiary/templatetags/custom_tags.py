@@ -5,6 +5,10 @@ register = template.Library()
 def index(List, i):
     return List[int(i)]
 
+@register.filter
+def length(QuerySet):
+    return QuerySet.count()
+
 # for calendar template range
 @register.filter(name='fisttimes') 
 def firstimes(number):

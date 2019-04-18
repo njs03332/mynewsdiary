@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load custom_tags %}
+<h2>팔로우하는 이슈</h2>
+{% for issue in issues %}
+    <strong># {{ issue.title }}</strong> <a href="{% url 'unfollow' issue.id %}?next={{request.path}}">언팔로우</a> | {{ issue.followers|length }} followers <br>
+    다가오는 일정: {{ issue.events.first }}<br>
+    {% with article=issue.events.first.articles.first %}
+        {{ article.title }}<br>
+        {{ article.press }} | {{ article.created_at }}<br>
+    {% endwith %}
+{% endfor %}
+
+
+
+<h2>4월의 다른 이슈</h2>
+{% for issue in view.other_issues %}
+    <strong># {{ issue.title }}</strong> <a href="{% url 'follow' issue.id %}?next={{request.path}}">팔로우하기</a> | {{ issue.followers|length }} followers <br>
+    다가오는 일정: {{ issue.events.first }}<br>
+    {% with article=issue.events.first.articles.first %}
+        {{ article.title }}<br>
+        {{ article.press }} | {{ article.created_at }}<br>
+    {% endwith %}
+{% endfor %}
+
+{% endblock content %}

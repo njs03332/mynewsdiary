@@ -3,10 +3,12 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
 from django.contrib.auth.forms import UserCreationForm
-from .models import Event, Article
+from .models import Event, Article, Issue
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 from calendar import monthrange
+from django.http import HttpResponseRedirect
+
 
 now = datetime.datetime.now()
 
@@ -93,3 +95,33 @@ class ArticleDetailView(DetailView):
     model = Article
     template_name = 'newsdiary/article/article.html'
     context_variable_name = 'article'
+
+class PreviewView(LoginRequiredMixin, ListView):
+    login_url = '/accounts/login/'
+    template_name = 'newsdiary/preview.html'
+    context_object_name = 'issues'
+
+    def get_queryset(self):
+        return self.request.user.following_issues.all()
+
+    def other_issues(self):
+        return Issue.objects.exclude(followers=self.request.user)
+
+class ReviewView(LoginRequiredMixin, ListView):
+    login_url = '/accounts/login/'
+    template_name = 'newsdiary/review.html'
+    context_object_name = 'issues'
+
+
+
+def follow(request, pk):
+    issue = Issue.objects.get(id=pk)
+    issue.followers.add(request.user)
+    issue.save()
+    return HttpResponseRedirect(request.GET['next'])
+
+def unfollow(request, pk):
+    issue = Issue.objects.get(id=pk)
+    issue.followers.remove(request.user)
+    issue.save()
+    return HttpResponseRedirect(request.GET['next'])
