@@ -8,7 +8,6 @@
 ```bash
 pip install psycopg2
 pip install django-polymorphic
-python manage.py createsuperuser
 pip install Markdown
 pip install faker
 pip install libsass django-compressor django-sass-processor
