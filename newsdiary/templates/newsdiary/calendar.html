@@ -5,45 +5,39 @@
     <div class="container-fluid">
         <header>
             <h4 class="display-4 mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
-            <div class="row d-none d-sm-flex p-1 bg-dark text-white">
-            <h5 class="col-sm p-1 text-center">SUN</h5>
-            <h5 class="col-sm p-1 text-center">MON</h5>
-            <h5 class="col-sm p-1 text-center">TUE</h5>
-            <h5 class="col-sm p-1 text-center">WED</h5>
-            <h5 class="col-sm p-1 text-center">THU</h5>
-            <h5 class="col-sm p-1 text-center">FRI</h5>
-            <h5 class="col-sm p-1 text-center">SAT</h5>
+            <a href="{% url 'calendar' view.before %}">이전달</a>
+            <a href="{% url 'calendar' view.after %}">다음달</a>
+            <div class="row d-sm-flex p-1 bg-dark text-white">
+            <h5 class="col p-1 text-center">일</h5>
+            <h5 class="col p-1 text-center">월</h5>
+            <h5 class="col p-1 text-center">화</h5>
+            <h5 class="col p-1 text-center">수</h5>
+            <h5 class="col p-1 text-center">목</h5>
+            <h5 class="col p-1 text-center">금</h5>
+            <h5 class="col p-1 text-center">토</h5>
             </div>
         </header>
         <div class="row border border-right-0 border-bottom-0">
-            <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted">
+            <div class="day col p-2 border border-left-0 border-top-0 text-truncate d-sm-inline-block bg-light text-muted">
                 <h5 class="row align-items-center">
-                    <span class="date col-1">31</span>
-                    <small class="col d-sm-none text-center text-muted">6</small>
+                    <span class="date col-1"></span>
+                    <small class="col d-sm-none text-center text-muted"></small>
                     <span class="col-1"></span>
                 </h5>
-                <p class="d-sm-none">No events</p>
+                <!--p class="d-sm-none">No events</p-->
             </div>
             {% for day in view.days %}
+                <div class="day col p-2 border border-left-0 border-top-0 text-truncate ">
+                    <h5 class="row align-items-center">
+                        <span class="date col-1">{{ day }}</span>
+                        <!---small class="col d-sm-none text-center text-muted">{{view.weekday}}</small-->
+                        <span class="col-1"></span>
+                    </h5>
+                    <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-info text-white" title="Test Event 1">Test Event 1</a>
+                    {% comment %} <p class="d-sm-none">No events</p> {% endcomment %}
+                </div>
                 {% if day in view.saturday %}
-                    <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
-                        <h5 class="row align-items-center">
-                            <span class="date col-1">{{ day }}</span>
-                            <!---small class="col d-sm-none text-center text-muted">{{view.weekday}}</small-->
-                            <span class="col-1"></span>
-                        </h5>
-                        <p class="d-sm-none">No events</p>
-                    </div>
                     <div class="w-100"></div>
-                {% else %}
-                    <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
-                        <h5 class="row align-items-center">
-                            <span class="date col-1">{{ day }}</span>
-                            <!--small class="col d-sm-none text-center text-muted">{{view.weekday}}</small-->
-                            <span class="col-1"></span>
-                        </h5>
-                        <p class="d-sm-none">No events</p>
-                    </div>
                 {% endif %}
             {% endfor %}
         </div>
