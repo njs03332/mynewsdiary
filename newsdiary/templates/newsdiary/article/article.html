@@ -9,7 +9,7 @@
         | 수정일: {{article.updated_at}}
     {% endif %}
 
-    {% if article.id == 1 %}
+    <!-- {% if article.id == 1 %}
         {% include 'newsdiary/article/article1.html' %}
     {% elif article.id == 2 %}
         {% include 'newsdiary/article/article2.html' %}
@@ -31,7 +31,7 @@
         {% include 'newsdiary/article/article10.html' %}
     {% elif article.id == 11 %}
         {% include 'newsdiary/article/article11.html' %}
-    {% endif %}
+    {% endif %} -->
 
     {% for author in article.authors.all %}
         {% if author.name %}

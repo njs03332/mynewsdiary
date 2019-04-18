@@ -11,13 +11,14 @@ pip install django-polymorphic
 python manage.py createsuperuser
 pip install Markdown
 pip install faker
+pip install libsass django-compressor django-sass-processor
 ```
   
 ## Seeding
 > 실행시 현재 갖고 있는 모든 데이터를 지운 후, 새롭게 seed 데이터를 생성합니다. (superuser 1명 포함)
 ```bash
-echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'abababab')" | python manage.py shell
 python manage.py seed --mode=refresh
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'abababab')" | python manage.py shell
 ```
   
 ## Migration 파일 정리

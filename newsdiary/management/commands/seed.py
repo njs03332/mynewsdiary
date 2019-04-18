@@ -3,6 +3,8 @@ import random
 from django.contrib.auth.models import User
 from newsdiary.models import *
 from faker import Faker 
+from datetime import datetime
+from django.utils import timezone
 
 # python manage.py seed --mode=refresh
 
@@ -84,10 +86,54 @@ def create_issues():
         issue.save()
     return
 
-# def create_events():
-#     event1 = Event.objects.create(
+def create_events(self):
+    # event1 = Event.objects.create(
+        
+    # )
+    categories = ['POL', 'SOC', 'ECON', 'WRD']
+    for i in range(9):
+        dt = datetime(2019, 4, i*3+4)
+        dt_aware = timezone.make_aware(dt)
+        event = Event.objects.create(
+            title=self.kofake.catch_phrase(),
+            concept=self.kofake.text(max_nb_chars=50, ext_word_list=None),
+            issue=Issue.objects.order_by("?").first(),
+            datetime=dt_aware,
+            category=random.choice(categories)
+        )
+    return
 
-#     )
+def create_articles(self):
+    first_event = Event.objects.first().id
+    for i in range(5):
+        article = Article.objects.create(
+            created_at=timezone.now(),
+            updated_at=timezone.now(),
+            title=self.kofake.catch_phrase(),
+            press='한겨레',
+            issue=Issue.objects.order_by("?").first()
+        )
+    for i in range(30):
+        article = Article.objects.create(
+            created_at=timezone.now(),
+            updated_at=timezone.now(),
+            title=self.kofake.catch_phrase(),
+            press='jtbc뉴스',
+            event=Event.objects.order_by("?").first()
+        )
+    for i in range(9):
+        article = Article.objects.create(
+            created_at=timezone.now(),
+            updated_at=timezone.now(),
+            title=self.kofake.catch_phrase(),
+            press='연합뉴스',
+            parent_event=Event.objects.get(pk=first_event)
+        )
+        first_event += 1
+
+# def create_journalists():
+
+
 
 
 def run_seed(self, mode):
@@ -106,5 +152,6 @@ def run_seed(self, mode):
     # for i in range(5):
     create_users(self)
     create_issues()
-    # create_events()
-    # create_articles()
+    create_events(self)
+    create_articles(self)
+    # create_journalists()
