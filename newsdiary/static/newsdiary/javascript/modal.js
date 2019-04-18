@@ -12,6 +12,19 @@ $('#eventModal').on('show.bs.modal', function (event) {
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     console.log(eventTitle)
     var modal = $(this)
+    if (eventCategory === '정치') {
+        modal.find('.modal-event-title').removeClass('bg-danger')
+        modal.find('.modal-event-title').removeClass('bg-warning')
+        modal.find('.modal-event-title').addClass('bg-danger')
+    } else if (eventCategory === '사회') {
+        modal.find('.modal-event-title').removeClass('bg-danger')
+        modal.find('.modal-event-title').removeClass('bg-success')
+        modal.find('.modal-event-title').addClass('bg-warning')
+    } else if (eventCategory === '경제'){
+        modal.find('.modal-event-title').removeClass('bg-danger')
+        modal.find('.modal-event-title').removeClass('bg-warning')
+        modal.find('.modal-event-title').addClass('bg-success')
+    }
     modal.find('.modal-event-title').text(eventTitle)
     modal.find('.modal-event-category').text(eventCategory)
     modal.find('.modal-event-concept').text(eventConcept)
