@@ -47,13 +47,7 @@ class CalendarView(LoginRequiredMixin, ListView):
             return int(self.kwargs['pk'] / 10)
 
     def days(self):
-        if self.kwargs['pk'] >= 100000:
-            year = int(self.kwargs['pk'] / 100)
-            month = int(self.kwargs['pk'] % 100)
-        else:
-            year = int(self.kwargs['pk'] / 10)
-            month = int(self.kwargs['pk'] % 10)
-        return range(1,monthrange(year, month)[1]+1)
+        return range(1,monthrange(self.year(), self.month())[1]+1)
     
     def before(self):
         return int(str(self.year()) + str(self.month()-1))
@@ -71,6 +65,9 @@ class CalendarView(LoginRequiredMixin, ListView):
             if day % 7 == 6 - self.weekday():
                 ret.append(day)
         return ret
+    def last_weekday(self):
+        return datetime.datetime(self.year(), self.month(), monthrange(self.year(), self.month())[1]).weekday()
+
     # def get_context_data(self, **kwargs):
     #     # Call the base implementation first to get a context
     #     context = super().get_context_data(**kwargs)
@@ -93,5 +90,5 @@ class SignUpView(CreateView):
 
 class ArticleDetailView(DetailView):
     model = Article
-    template_name = 'newsdiary/article.html'
+    template_name = 'newsdiary/article/article.html'
     context_variable_name = 'article'

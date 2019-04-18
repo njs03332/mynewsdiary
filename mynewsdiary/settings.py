@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sass_processor', # for sass preprocessor
     'newsdiary.apps.NewsdiaryConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,5 @@ STATICFILES_FINDERS = [
 ]
 
 LOGIN_REDIRECT_URL = "/"
+
+
