@@ -1,0 +1,17 @@
+.mnd-color {
+  background: linear-gradient(45deg, #36D1DC, #5B86E5); }
+
+.navbar {
+  padding: 1rem; }
+
+.container-fluid {
+  margin-top: 65px; }
+
+.fixed-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030; }
+
+/*# sourceMappingURL=layout.css.map */

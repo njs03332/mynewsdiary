@@ -1,14 +1,50 @@
+.month {
+    margin-bottom: 0 !important;
+    display: inline-block;
+    
+} 
+
+.month-arrow {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.week { 
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.date {
+    font-weight: 300;
+}
+
+
 @media (max-width:575px) {
-    .display-4 {
-        font-size: 1.5rem;
+    .month {
+        font-size: 1.2rem;
     }
+
+    h5  {
+        font-size: small;
+    }
+
     .day h5 {
         font-size: small;
         padding: 3px 5px 5px;
-        margin: -8px -8px 8px -8px;
+        margin: -3px -8px 0px -8px;
     }
+
+    .day {
+        height: 22vw;
+    }
+
     .date {
         padding-left: 4px;
+    }
+
+    .event {
+        font-size: .1rem;
+        padding: .2rem .5rem !important;
     }
 }
 

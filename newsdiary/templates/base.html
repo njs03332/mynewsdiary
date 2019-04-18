@@ -9,12 +9,16 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+        <!-- Material icon link -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         {% load sass_tags %}
         <link href="{% sass_src 'newsdiary/stylesheets/registration.scss' %}" rel="stylesheet" type="text/css" />
         <link href="{% sass_src 'newsdiary/stylesheets/calendar.scss' %}" rel="stylesheet" type="text/css" />
+        <link href="{% sass_src 'newsdiary/stylesheets/layout.scss' %}" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <header style="background-color: #F48462;">
+        {% comment %} <header class="brand-color">
             <div>
                 {% if user.is_authenticated %}
                         {{ user.get_username }}님, 안녕하세요
@@ -27,9 +31,14 @@
             <p>
             MyNewsDiary
             </p>
-        </header>
+        </header> {% endcomment %}
         {% block content %}
         {% endblock content %}
+
+        <!-- bottom tab bar -->
+        <nav class="navbar fixed-bottom navbar-light bg-light text-center">
+            <a class="navbar-brand" href="#">Tab Bar</a>
+        </nav>
 
         <!-- Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
