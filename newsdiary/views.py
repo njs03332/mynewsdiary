@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from django.contrib.auth.forms import UserCreationForm
-from .models import Event
+from .models import Event, Article
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 from calendar import monthrange
@@ -61,6 +61,16 @@ class CalendarView(LoginRequiredMixin, ListView):
     def after(self):
         return int(str(self.year()) + str(self.month()+1))
 
+    def weekday(self):
+        #print(datetime(year=self.year(), month=self.month(), day=1).weekday())
+        return datetime.datetime(self.year(), self.month(), 1).weekday()
+
+    def saturday(self):
+        ret = []
+        for day in self.days():
+            if day % 7 == 6 - self.weekday():
+                ret.append(day)
+        return ret
     # def get_context_data(self, **kwargs):
     #     # Call the base implementation first to get a context
     #     context = super().get_context_data(**kwargs)
@@ -80,3 +90,8 @@ class SignUpView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
+
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'newsdiary/article.html'
+    context_variable_name = 'article'

@@ -2,9 +2,60 @@
 
 {% block content %}
 {% load custom_tags %}
-<h1>Calendar page</h1>
-    {{view.year}}년 {{view.month}}월
-    <a href="{% url 'calendar' view.before %}">이전달</a>
+    <div class="container-fluid">
+        <header>
+            <h4 class="display-4 mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
+            <div class="row d-none d-sm-flex p-1 bg-dark text-white">
+            <h5 class="col-sm p-1 text-center">SUN</h5>
+            <h5 class="col-sm p-1 text-center">MON</h5>
+            <h5 class="col-sm p-1 text-center">TUE</h5>
+            <h5 class="col-sm p-1 text-center">WED</h5>
+            <h5 class="col-sm p-1 text-center">THU</h5>
+            <h5 class="col-sm p-1 text-center">FRI</h5>
+            <h5 class="col-sm p-1 text-center">SAT</h5>
+            </div>
+        </header>
+        <div class="row border border-right-0 border-bottom-0">
+            <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted">
+                <h5 class="row align-items-center">
+                    <span class="date col-1">31</span>
+                    <small class="col d-sm-none text-center text-muted">6</small>
+                    <span class="col-1"></span>
+                </h5>
+                <p class="d-sm-none">No events</p>
+            </div>
+            {% for day in view.days %}
+                {% if day in view.saturday %}
+                    <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
+                        <h5 class="row align-items-center">
+                            <span class="date col-1">{{ day }}</span>
+                            <!---small class="col d-sm-none text-center text-muted">{{view.weekday}}</small-->
+                            <span class="col-1"></span>
+                        </h5>
+                        <p class="d-sm-none">No events</p>
+                    </div>
+                    <div class="w-100"></div>
+                {% else %}
+                    <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
+                        <h5 class="row align-items-center">
+                            <span class="date col-1">{{ day }}</span>
+                            <!--small class="col d-sm-none text-center text-muted">{{view.weekday}}</small-->
+                            <span class="col-1"></span>
+                        </h5>
+                        <p class="d-sm-none">No events</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+
+
+
+{% comment %} <h1>Calendar page</h1>
+    {{view.year}}년 {{view.month}}월<br>
+    1일은 {{view.weekday}}번째 요일
+    <a href="{% url 'calendar' view.before %}"">이전달</a>
     <a href="{% url 'calendar' view.after %}">다음달</a>
     {% for day in view.days %}
         <p>
@@ -24,7 +75,7 @@
                 {% for a in event.top_article.all %}
                     <p>관련 대표 기사: {{ event.top_article }}</p>
                 {% endfor %}
-            {% endfor %}
-        </p> 
-    {% endfor %}       
-{% endblock content %}
+            {% endfor %}   
+        </p>     
+    {% endfor %}
+{% endblock content %} {% endcomment %}
