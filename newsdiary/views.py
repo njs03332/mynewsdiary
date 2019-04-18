@@ -3,11 +3,13 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
 from django.contrib.auth.forms import UserCreationForm
-from .models import Event, Article, Issue
+from .models import Event, Article, Issue, Memo
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 from calendar import monthrange
 from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 
 now = datetime.datetime.now()
@@ -71,21 +73,6 @@ class CalendarView(LoginRequiredMixin, ListView):
     def last_weekday(self):
         return datetime.datetime(self.year(), self.month(), monthrange(self.year(), self.month())[1]).weekday()
 
-    # def get_context_data(self, **kwargs):
-    #     # Call the base implementation first to get a context
-    #     context = super().get_context_data(**kwargs)
-    #     # Add in another context variable
-    #     if self.kwargs['pk'] >= 100000:
-    #         year = int(self.kwargs['pk'] / 100)
-    #         month = int(self.kwargs['pk'] % 100)
-    #     else:
-    #         year = int(self.kwargs['pk'] / 10)
-    #         month = int(self.kwargs['pk'] % 10)
-    #     context['days'] = monthrange(year, month)[1]
-    #     context['month'] = month
-    #     context['year'] = year
-    #     return context
-
 class SignUpView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
@@ -125,3 +112,77 @@ def unfollow(request, pk):
     issue.followers.remove(request.user)
     issue.save()
     return HttpResponseRedirect(request.GET['next'])
+
+class CreateMemoArticleView(LoginRequiredMixin, CreateView):
+    login_url = '/accounts/login/'
+    model = Memo
+    fields = ['title', 'content']
+    template_name = 'newsdiary/memo/new_article_memo.html'
+
+    def form_valid(self, form):
+        form.instance.article = Article.objects.get(pk=self.kwargs['pk'])
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def article(self):
+        return Article.objects.get(pk=self.kwargs['pk'])
+
+    def get_success_url(self):
+        return reverse('article', kwargs={'pk': self.kwargs['pk']})
+
+class CreateMemoIssueView(LoginRequiredMixin, CreateView):
+    login_url = '/accounts/login/'
+    model = Memo
+    fields = ['title', 'content']
+    template_name = 'newsdiary/memo/new_issue_memo.html'
+
+    def form_valid(self, form):
+        form.instance.issue = Issue.objects.get(pk=self.kwargs['pk'])
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def issue(self):
+        return Issue.objects.get(pk=self.kwargs['pk'])
+
+    def get_success_url(self):
+        return reverse('memo_issue', args=[self.kwargs['pk']])
+
+class MemoListView(LoginRequiredMixin, ListView):
+    login_url = '/accounts/login/'
+    template_name = 'newsdiary/memo/memos.html'
+    context_object_name = 'memos'
+
+    def get_queryset(self):
+        return self.request.user.memos.all()
+
+    # def other_issues(self):
+    #     return Issue.objects.exclude(followers=self.request.user)
+
+class IssueListView(LoginRequiredMixin, ListView):
+    login_url = '/accounts/login/'
+    template_name = 'newsdiary/issue/my_issues.html'
+    context_object_name = 'issues'
+
+    def get_queryset(self):
+        return self.request.user.following_issues.all()
+
+class MemoIssueListView(LoginRequiredMixin, ListView):
+    login_url = '/accounts/login/'
+    template_name = 'newsdiary/memo/memo_issue.html'
+    context_object_name = 'memos'
+
+    def get_queryset(self):
+        return self.request.user.memos.filter(issue=Issue.objects.get(pk=self.kwargs['pk']))
+
+    def issue(self):
+        return Issue.objects.get(pk=self.kwargs['pk'])
+
+    def event_memos(self):
+        return self.request.user.memos.filter(article__issue=self.issue()) | self.request.user.memos.filter(article__event__issue=self.issue())
+
+class MemoDetailView(LoginRequiredMixin, DetailView):
+    login_url = '/accounts/login/'
+    model = Memo
+    template_name = 'newsdiary/memo/memo.html'
+    context_variable_name = 'memo'
+

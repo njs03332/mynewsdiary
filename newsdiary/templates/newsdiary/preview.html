@@ -6,7 +6,7 @@
 {% for issue in issues %}
     <strong># {{ issue.title }}</strong> <a href="{% url 'unfollow' issue.id %}?next={{request.path}}">언팔로우</a> | {{ issue.followers|length }} followers <br>
     {% if issue.events.first %}
-    다가오는 일정: {{ issue.events.first }}<br>
+    다가오는 일정: {{ issue.events.first.title }}<br>
         {% with article=issue.events.first.articles.first %}
             <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
             {{ article.press }} | {{ article.created_at }}<br>
@@ -20,7 +20,7 @@
 {% for issue in view.other_issues %}
     <strong># {{ issue.title }}</strong> <a href="{% url 'follow' issue.id %}?next={{request.path}}">팔로우하기</a> | {{ issue.followers|length }} followers <br>
     {% if issue.events.first %}
-    다가오는 일정: {{ issue.events.first }}<br>
+    다가오는 일정: {{ issue.events.first.title }}<br>
         {% with article=issue.events.first.articles.first %}
             <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
             {{ article.press }} | {{ article.created_at }}<br>

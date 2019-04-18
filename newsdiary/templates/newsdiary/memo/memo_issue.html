@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load custom_tags %}
+<h2># {{ view.issue.title }}</h2>
+<!-- 이 페이지에서 오른쪽 밑에 항상 떠있는 floating button?이면 좋을 것 같다 -->
+<a href="{% url 'new_i' view.issue.id %}">이슈에 관해 메모쓰기</a><br>
+<!-- 이슈에 관한 메모 -->
+{% for memo in memos %}
+    <div>
+        {{ memo.created_at|date_only }}
+        <a href="{% url 'memo' memo.id %}">{{memo.title}}</a>
+    </div>
+{% endfor %}
+<!-- 이슈에 관한 기사 혹은 이슈의 사건에 관한 기사에 관한 메모 -->
+{% for memo in view.event_memos %}
+    <div>
+        {{ memo.created_at|date_only }}
+        {{ memo.article.title }}에 관한 메모<br>
+        <a href="{% url 'memo' memo.id %}">{{memo.title}}</a>
+    </div>
+{% endfor %}
+{% endblock content %}

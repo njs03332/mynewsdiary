@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!-- 이 페이지에서 오른쪽 밑에 항상 떠있는 floating button?이면 좋을 것 같다 -->
+<a href="{% url 'new_a' article.id %}">메모 버튼</a>
 <div>
     {{ article.press }}
     <h1>{{ article.title }}</h1>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ memo.title }}</h1>
+    {% if memo.issue %}
+        <a href="{% url 'memo_issue' memo.issue.id %}">{{ memo.issue.title }}</a>에 대한 메모
+    {% elif memo.article %}
+        <a href="{% url 'article' memo.article.id %}">{{ memo.article.title }}</a>에 대한 메모
+    {% endif %}
+    <br>
+    {{ memo.content }}
+{% endblock content %}

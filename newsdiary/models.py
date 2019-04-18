@@ -106,6 +106,9 @@ class Memo(models.Model):
     issue = models.ForeignKey(Issue, on_delete=models.SET_NULL, related_name='memos', null=True)  # 유저가 생성할 때 없는 건 불가능, 나중에 이슈가 삭제되어 표류하는 메모가 생겼을 때는 이 column이 null으로 존재 가능
     article = models.ForeignKey(Article, on_delete=models.SET_NULL, related_name='memos', null=True)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def update_date(self):
         self.updated_at = timezone.now()
         self.save()
