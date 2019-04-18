@@ -97,9 +97,12 @@ class PreviewView(LoginRequiredMixin, ListView):
 class ReviewView(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     template_name = 'newsdiary/review.html'
-    context_object_name = 'issues'
+    context_object_name = 'articles'
 
-
+    def get_queryset(self):
+        # 오늘 기사 중에, 사용자가 팔로우하고 있는 이슈에 대한, 혹은 사용자가 팔로우하고 있는 이슈에 대한 사건에 대한 기사들
+        today = Article.objects.filter(created_at__date=datetime.date.today())
+        return today.filter(issue__followers=self.request.user) | today.filter(event__issue__followers=self.request.user)
 
 def follow(request, pk):
     issue = Issue.objects.get(id=pk)
