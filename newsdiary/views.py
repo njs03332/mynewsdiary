@@ -59,6 +59,13 @@ class CalendarView(LoginRequiredMixin, ListView):
         #print(datetime(year=self.year(), month=self.month(), day=1).weekday())
         return datetime.datetime(self.year(), self.month(), 1).weekday()
 
+    def saturday(self):
+        ret = []
+        for day in self.days():
+            if day % 7 == 6 - self.weekday():
+                ret.append(day)
+        return ret
+        
     def last_weekday(self):
         return datetime.datetime(self.year(), self.month(), monthrange(self.year(), self.month())[1]).weekday()
 
