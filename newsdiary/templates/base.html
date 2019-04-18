@@ -36,8 +36,14 @@
         {% endblock content %}
 
         <!-- bottom tab bar -->
+        <!-- TODO: tab bar url -->
+        홈, 예습, 복습, 메모, 이슈
         <nav class="navbar fixed-bottom navbar-light bg-light text-center">
-            <a class="navbar-brand" href="#">Tab Bar</a>
+            <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons {% if request.resolver_match.view_name == 'calendar' %}tab-active{% endif %}">home</i></a></div>
+            <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">book</i></a></div>
+            <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">today</i></a></div>
+            <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">local_post_office</i></a></div>
+            <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">person</i></a></div>
         </nav>
 
         <!-- Bootstrap JS -->
