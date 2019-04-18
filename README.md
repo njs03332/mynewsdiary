@@ -10,6 +10,7 @@ pip install psycopg2
 pip install django-polymorphic
 pip install django-markdownx
 python manage.py createsuperuser
+pip install Markdown
 ```
 ## 추천 testing 방법
 **superuser**  

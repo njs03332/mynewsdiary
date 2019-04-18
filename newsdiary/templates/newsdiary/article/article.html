@@ -2,7 +2,7 @@
 
 {% block content %}
 <div>
-    언론사: {{ article.press }}
+    {{ article.press }}
     <h1>{{ article.title }}</h1>
     작성일: {{article.created_at}}<br>
     {% if article.updated_at %}
@@ -11,7 +11,37 @@
 
     {% if article.id == 1 %}
         {% include 'newsdiary/article/article1.html' %}
+    {% elif article.id == 2 %}
+        {% include 'newsdiary/article/article2.html' %}
+    {% elif article.id == 3 %}
+        {% include 'newsdiary/article/article3.html' %}
+    {% elif article.id == 4 %}
+        {% include 'newsdiary/article/article4.html' %}
+    {% elif article.id == 5 %}
+        {% include 'newsdiary/article/article5.html' %}
+    {% elif article.id == 6 %}
+        {% include 'newsdiary/article/article6.html' %}
+    {% elif article.id == 7 %}
+        {% include 'newsdiary/article/article7.html' %}
+    {% elif article.id == 8 %}
+        {% include 'newsdiary/article/article8.html' %}
+    {% elif article.id == 9 %}
+        {% include 'newsdiary/article/article9.html' %}
+    {% elif article.id == 10 %}
+        {% include 'newsdiary/article/article10.html' %}
+    {% elif article.id == 11 %}
+        {% include 'newsdiary/article/article11.html' %}
     {% endif %}
+
+    {% for author in article.authors.all %}
+        {% if author.name %}
+            {{ author.name }} 기자
+        {% endif %}
+        {% if author.email %}
+            {{ author.email }}
+        {% endif %}
+        &nbsp;&nbsp;
+    {% endfor %}
 
 </div>
 {% endblock content %}
