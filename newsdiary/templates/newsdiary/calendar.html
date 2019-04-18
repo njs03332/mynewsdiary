@@ -2,10 +2,10 @@
 
 {% block content %}
 {% load custom_tags %}
-    <nav class="navbar fixed-top navbar-light bg-light">
-        <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_left</i></a>
+    <nav class="navbar fixed-top navbar-light mnd-color text-white">
+        <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-white">keyboard_arrow_left</i></a>
         <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
-        <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_right</i></a>   
+        <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-white">keyboard_arrow_right</i></a>   
     </nav>
     <div class="container-fluid">
         <header>
