@@ -2,13 +2,6 @@
 
 {% block content %}
 {% load custom_tags %}
-<<<<<<< HEAD
-    <nav class="navbar fixed-top navbar-light mnd-color text-white">
-        <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-white">keyboard_arrow_left</i></a>
-        <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
-        <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-white">keyboard_arrow_right</i></a>   
-    </nav>
-=======
     <nav class="navbar fixed-top navbar-light bg-light">
         <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_left</i></a>
         <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
@@ -20,7 +13,6 @@
 <br></h4>
         <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_right</i></a>   
     </nav> {% endcomment %}
->>>>>>> f1f3e998c96d51437345a5462e0db37f0714753f
     <div class="container-fluid">
         <header>
             <div class="row d-sm-flex p-1">
