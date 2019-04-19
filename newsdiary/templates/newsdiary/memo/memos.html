@@ -2,7 +2,7 @@
 
 {% block content %}
 {% load custom_tags %}
-<a href="{% url 'issues' %}">이슈별로 보기</a><br>
+<a href="{% url 'memos_issue' %}">이슈별로 보기</a><br>
 {% for memo in memos %}
     <div>
         {{ memo.created_at|date_only }}
