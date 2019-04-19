@@ -86,6 +86,8 @@ class ArticleDetailView(DetailView):
     template_name = 'newsdiary/article/article.html'
     context_variable_name = 'article'
 
+    def first_article(self):
+        return Article.objects.first().id
 class PreviewView(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     template_name = 'newsdiary/preview.html'
