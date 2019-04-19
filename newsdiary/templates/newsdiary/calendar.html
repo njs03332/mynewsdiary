@@ -2,11 +2,25 @@
 
 {% block content %}
 {% load custom_tags %}
+<<<<<<< HEAD
     <nav class="navbar fixed-top navbar-light mnd-color text-white">
         <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-white">keyboard_arrow_left</i></a>
         <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
         <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-white">keyboard_arrow_right</i></a>   
     </nav>
+=======
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_left</i></a>
+        <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
+        <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_right</i></a>  
+    </nav> 
+    {% comment %} <nav class="navbar fixed-top navbar-light bg-light">
+        <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_left</i></a>
+        <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월오늘은 {{view.today}}일
+<br></h4>
+        <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_right</i></a>   
+    </nav> {% endcomment %}
+>>>>>>> f1f3e998c96d51437345a5462e0db37f0714753f
     <div class="container-fluid">
         <header>
             <div class="row d-sm-flex p-1">
@@ -35,8 +49,12 @@
             {% for day in view.days %}
                 <div class="day col p-1 border border-left-0 border-top-0 text-truncate ">
                     <h5 class="row align-items-center">
-                        <span class="date col-1">{{ day }}</span>
+                        {% if day == view.today %}
+                            <span class="date today-date-badge badge badge-pill text-white">{{ day }}</span>
+                        {% else %}
+                            <span class="date col-1">{{ day }}</span>
                         <!---small class="col d-sm-none text-center text-muted">{{view.weekday}}</small-->
+                        {% endif %}
                         <span class="col-1"></span>
                     </h5>
                     <!-- event label 스타일 먹이는 효율적인 방법 찾기........ㅠㅠㅠㅠㅠㅠ-->
@@ -83,7 +101,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header justify-content-center">
-                    <h5 class="modal-event-title d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate text-white" id="exampleModalLongTitle">Modal event title</h5>
+                    <h5 class="modal-event-title d-block p-1 pl-2 pr-2 rounded text-truncate text-white" id="exampleModalLongTitle">Modal event title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -93,7 +111,9 @@
                         <tbody>
                             <tr>
                             <th scope="row" class="modal-row">관련 이슈</th>
-                            <td><span class="modal-event-issue">분야</span></td>
+                            <td>
+                                <span class="modal-event-issue">이슈</span>
+                            </td>
                             </tr>
                             <tr>
                             <th scope="row" class="modal-row">개념</th>

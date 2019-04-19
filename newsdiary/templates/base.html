@@ -12,6 +12,9 @@
         <!-- Material icon link -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+        <!-- Font Awesome icon link -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        
         {% load sass_tags %}
         <link href="{% sass_src 'newsdiary/stylesheets/registration.scss' %}" rel="stylesheet" type="text/css" />
         <link href="{% sass_src 'newsdiary/stylesheets/calendar.scss' %}" rel="stylesheet" type="text/css" />
@@ -38,8 +41,8 @@
         <!-- bottom tab bar -->
         <!-- TODO: tab bar url -->
         <nav class="navbar fixed-bottom navbar-light bg-light text-center">
-            <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons {% if request.resolver_match.view_name == 'calendar' %}tab-active{% endif %}">home</i></a></div>
-            <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">book</i></a></div>
+            <div><a href="{% url 'temp' %}"><i class="tab-icon material-icons {% if request.resolver_match.view_name == 'calendar' %}tab-active{% endif %}">home</i></a></div>
+            <div><a href="{% url 'preview' %}"><i class="tab-icon material-icons {% if request.resolver_match.view_name == 'preview' %}tab-active{% endif %}">book</i></a></div>
             <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">today</i></a></div>
             <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">local_post_office</i></a></div>
             <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">person</i></a></div>

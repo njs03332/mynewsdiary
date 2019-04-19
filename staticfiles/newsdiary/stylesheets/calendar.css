@@ -2,16 +2,18 @@
   margin-bottom: 0 !important;
   display: inline-block; }
 
-.month-arrow {
-  display: inline-flex;
-  vertical-align: middle; }
-
 .week {
   font-weight: 400;
   margin-bottom: 0; }
 
 .date {
   font-weight: 300; }
+
+.text-truncate {
+  text-overflow: inherit; }
+
+.today-date-badge {
+  background: linear-gradient(#36D1DC, #5B86E5); }
 
 table {
   table-layout: fixed; }
@@ -32,12 +34,15 @@ h5 {
     padding: 3px 5px 5px;
     margin: -3px -8px 0px -8px; }
   .day {
-    height: 22vw; }
+    height: 29vw !important; }
+  .today-date-badge {
+    background: linear-gradient(45deg, #36D1DC, #5B86E5);
+    padding-left: 0;
+    padding-right: .3rem; }
   .date {
     font-size: small;
     padding-left: 4px; }
   .event {
-    font-size: .1rem;
     padding: .2rem .5rem !important; } }
 
 @media (min-width: 576px) {

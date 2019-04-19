@@ -2,7 +2,11 @@
 
 {% block content %}
 {% load custom_tags %}
-{{view.year}}
+<div class="container-fluid">
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <h4 class="month mb-4 text-center">{{ view.year }}년 {{ view.month }}월 {{ view.day }}일</h4>
+    </nav>
+{% comment %} {{view.year}}
 {{view.month}}
 {{view.day}}
 <h2>팔로우하는 이슈</h2>
@@ -15,20 +19,39 @@
             {{ article.press }} | {{ article.created_at }}<br>
         {% endwith %}
     {% endif %}
-{% endfor %}
+{% endfor %} {% endcomment %}
+
+    <h2>팔로우하는 이슈</h2>
+    {% for issue in issues %}
+        <strong># </strong> {{ issue.title }}
+        <a href="{% url 'unfollow' issue.id %}?next={{request.path}}">
+            <i class="fas fa-star"></i>
+            {% comment %} <i class="material-icons">star</i> {% endcomment %}
+        </a> | {{ issue.followers|length }} followers <br>
+        {% if issue.events.first %}
+        다가오는 일정: <span class="p-1 pl-2 pr-2 rounded text-truncate text-white bg-danger" id="exampleModalLongTitle">{{ issue.events.first.title }}</span><br>
+            {% with article=issue.events.first.articles.first %}
+                <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
+                {{ article.press }} | {{ article.created_at }}<br>
+            {% endwith %}
+        {% endif %}
+    {% endfor %}
 
 
 
-<h2>4월의 다른 이슈</h2>
-{% for issue in view.other_issues %}
-    <strong># {{ issue.title }}</strong> <a href="{% url 'follow' issue.id %}?next={{request.path}}">팔로우하기</a> | {{ issue.followers|length }} followers <br>
-    {% if issue.events.first %}
-    다가오는 일정: {{ issue.events.first.title }}<br>
-        {% with article=issue.events.first.articles.first %}
-            <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
-            {{ article.press }} | {{ article.created_at }}<br>
-        {% endwith %}
-    {% endif %}
-{% endfor %}
-
+    <h2>4월의 다른 이슈</h2>
+    {% for issue in view.other_issues %}
+        <strong># {{ issue.title }}</strong>
+        <a href="{% url 'follow' issue.id %}?next={{request.path}}">
+            <i class="far fa-star"></i>
+        </a> | {{ issue.followers|length }} followers <br>
+        {% if issue.events.first %}
+        다가오는 일정: {{ issue.events.first.title }}<br>
+            {% with article=issue.events.first.articles.first %}
+                <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
+                {{ article.press }} | {{ article.created_at }}<br>
+            {% endwith %}
+        {% endif %}
+    {% endfor %}
+</div>
 {% endblock content %}

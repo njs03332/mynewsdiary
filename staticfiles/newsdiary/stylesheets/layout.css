@@ -2,10 +2,10 @@
   background: linear-gradient(45deg, #36D1DC, #5B86E5); }
 
 .navbar {
-  padding: 1rem; }
+  padding: 1.3rem !important; }
 
 .container-fluid {
-  margin-top: 65px; }
+  margin: 100px 0 !important; }
 
 .fixed-bottom {
   position: fixed;
@@ -14,10 +14,24 @@
   left: 0;
   z-index: 1030; }
 
+.material-icons {
+  display: inline-flex;
+  vertical-align: middle; }
+
 .tab-icon {
+  font-size: 26px;
   color: lightgrey; }
 
 .tab-active {
-  color: #5699E3; }
+  color: #5699E3;
+  background: -webkit-linear-gradient(#36D1DC, #5B86E5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
+
+.fas {
+  color: #5699E3;
+  background: -webkit-linear-gradient(#36D1DC, #5B86E5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
 
 /*# sourceMappingURL=layout.css.map */
