@@ -1,12 +1,23 @@
+.article-container {
+  margin: 90px 15px !important; }
+
 .article-img {
-  width: 100%; }
+  width: 100%;
+  margin: .5rem 0; }
 
 .memo-btn {
-  box-shadow: 2px 2px 3px #999;
+  box-shadow: 4px 4px 3px #999;
   padding: 1rem 1.1rem;
   border-radius: 200rem;
   position: fixed;
   bottom: 5rem;
   right: 1rem; }
+
+.article-create-at {
+  font-size: 90%;
+  font-weight: 400; }
+
+.article-content {
+  font-size: 1.1rem; }
 
 /*# sourceMappingURL=article.css.map */

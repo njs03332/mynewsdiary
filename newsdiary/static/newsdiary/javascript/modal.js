@@ -16,15 +16,24 @@ $('#eventModal').on('show.bs.modal', function (event) {
     if (eventCategory === '정치') {
         modal.find('.modal-event-title').removeClass('bg-danger')
         modal.find('.modal-event-title').removeClass('bg-warning')
+        modal.find('.modal-event-title').removeClass('bg-violet')
         modal.find('.modal-event-title').addClass('bg-danger')
     } else if (eventCategory === '사회') {
         modal.find('.modal-event-title').removeClass('bg-danger')
         modal.find('.modal-event-title').removeClass('bg-success')
+        modal.find('.modal-event-title').removeClass('bg-violet')
         modal.find('.modal-event-title').addClass('bg-warning')
     } else if (eventCategory === '경제'){
         modal.find('.modal-event-title').removeClass('bg-danger')
         modal.find('.modal-event-title').removeClass('bg-warning')
+        modal.find('.modal-event-title').removeClass('bg-violet')
         modal.find('.modal-event-title').addClass('bg-success')
+    } else if (eventCategory === '세계'){
+        modal.find('.modal-event-title').removeClass('bg-danger')
+        modal.find('.modal-event-title').removeClass('bg-warning')
+        modal.find('.modal-event-title').removeClass('bg-success')
+        modal.find('.modal-event-title').addClass('bg-violet')
+
     }
     modal.find('.modal-event-title').text(eventTitle)
     modal.find('.modal-event-issue').text(eventIssue)

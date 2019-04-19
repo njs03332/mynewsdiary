@@ -2,53 +2,71 @@
 
 {% block content %}
 {% load custom_tags %}
-<!-- 이 페이지에서 오른쪽 밑에 항상 떠있는 floating button?이면 좋을 것 같다 -->
-<a href="{% url 'new_a' article.id %}">메모 버튼</a>
-<div>
-    <button class="memo-btn btn pmd-btn-fab pmd-ripple-effect btn-primary" type="button">
+
+<!-- 사건 title nav bar-->
+{% if article.event.get_category_display == '정치' %}
+    <nav class="navbar fixed-top navbar-light bg-danger text-white justify-content-center">
+{% elif article.event.get_category_display == '경제'%}
+    <nav class="navbar fixed-top navbar-light bg-success text-white justify-content-center">
+{% elif article.event.get_category_display == '사회'%} 
+    <nav class="navbar fixed-top navbar-light bg-warning text-white justify-content-center">
+{% elif article.event.get_category_display == '세계'%}
+    <nav class="navbar fixed-top navbar-light bg-violet text-white justify-content-center">
+{% else %}
+     <nav class="navbar fixed-top navbar-light bg-violet text-white justify-content-center">
+{% endif %}
+        <h4 class="month mb-4">{{ article.event }}</h4>
+    </nav>
+<div class="article-container">
+    <!-- 메모 버튼-->
+    <a href="{% url 'new_a' article.id %}" class="memo-btn btn pmd-btn-fab pmd-ripple-effect mnd-color">
         <i class="material-icons text-white">create</i>
-    </button>
-    {{ article.press }}
-    <h1>{{ article.title }}</h1>
-    <div class="small text-secondary">
-        작성일: {{article.created_at}}<br>
-        {% if article.updated_at %}
-        수정일: {{article.updated_at}}
+    </a>
+
+    <div>
+        <img src="http://im.mediatoday.co.kr/logo/logo.png" style="width: 100px; margin-left: 3px; margin-bottom: 5px;"/>
+        {% comment %} {{ article.press }} {% endcomment %}
+        <h1>{{ article.title }}</h1>
+        <div class="article-create-at text-secondary">
+            작성일: {{article.created_at}}<br>
+            {% if article.updated_at %}
+            수정일: {{article.updated_at}}
+            {% endif %}
+        </div>
+        {% if article.id == view.first_article %}
+            {% include 'newsdiary/article/article1.html' %}
+        {% comment %} {% elif article.id == view.first_article+1 %}
+            {% include 'newsdiary/article/article2.html' %}
+        {% elif article.id == view.first_article+2 %}
+            {% include 'newsdiary/article/article3.html' %}
+        {% elif article.id == view.first_article+3 %}
+            {% include 'newsdiary/article/article4.html' %} {% endcomment %}
+        {% comment %} {% elif article.id == view.first_article+1 %}
+            {% include 'newsdiary/article/article5.html' %}
+        {% elif article.id == 6 %}
+            {% include 'newsdiary/article/article6.html' %}
+        {% elif article.id == 7 %}
+            {% include 'newsdiary/article/article7.html' %}
+        {% elif article.id == 8 %}
+            {% include 'newsdiary/article/article8.html' %}
+        {% elif article.id == 9 %}
+            {% include 'newsdiary/article/article9.html' %}
+        {% elif article.id == 10 %}
+            {% include 'newsdiary/article/article10.html' %}
+        {% elif article.id == 11 %}
+            {% include 'newsdiary/article/article11.html' %} {% endcomment %}
         {% endif %}
+
+        {% for author in article.authors.all %}
+            {% if author.name %}
+                {{ author.name }} 기자
+            {% endif %}
+            {% if author.email %}
+                {{ author.email }}
+            {% endif %}
+            &nbsp;&nbsp;
+        {% endfor %}
+
     </div>
-    {% if article.id == view.first_article %}
-        {% include 'newsdiary/article/article1.html' %}
-    {% comment %} {% elif article.id == view.first_article+1 %}
-        {% include 'newsdiary/article/article2.html' %}
-    {% elif article.id == view.first_article+2 %}
-        {% include 'newsdiary/article/article3.html' %}
-    {% elif article.id == view.first_article+3 %}
-        {% include 'newsdiary/article/article4.html' %} {% endcomment %}
-    {% comment %} {% elif article.id == view.first_article+1 %}
-        {% include 'newsdiary/article/article5.html' %}
-    {% elif article.id == 6 %}
-        {% include 'newsdiary/article/article6.html' %}
-    {% elif article.id == 7 %}
-        {% include 'newsdiary/article/article7.html' %}
-    {% elif article.id == 8 %}
-        {% include 'newsdiary/article/article8.html' %}
-    {% elif article.id == 9 %}
-        {% include 'newsdiary/article/article9.html' %}
-    {% elif article.id == 10 %}
-        {% include 'newsdiary/article/article10.html' %}
-    {% elif article.id == 11 %}
-        {% include 'newsdiary/article/article11.html' %} {% endcomment %}
-    {% endif %}
-
-    {% for author in article.authors.all %}
-        {% if author.name %}
-            {{ author.name }} 기자
-        {% endif %}
-        {% if author.email %}
-            {{ author.email }}
-        {% endif %}
-        &nbsp;&nbsp;
-    {% endfor %}
-
 </div>
 {% endblock content %}

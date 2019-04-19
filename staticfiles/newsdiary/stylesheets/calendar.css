@@ -21,8 +21,8 @@ table {
 .modal-row {
   width: 30% !important; }
 
-h5 {
-  margin-bottom: 0; }
+.modal-event-title {
+  margin-bottom: 0 !important; }
 
 .clickable {
   cursor: pointer; }

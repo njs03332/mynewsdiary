@@ -1,5 +1,9 @@
+.article-container {
+    margin: 90px 15px !important;
+}
 .article-img {
     width: 100%;
+    margin: .5rem 0;
 
 }
 
@@ -10,4 +14,13 @@
     position: fixed;
     bottom: 5rem;
     right: 1rem;
+}
+
+.article-create-at {
+    font-size: 90%;
+    font-weight: 400;
+}
+
+.article-content {
+    font-size: 1.1rem;
 }
