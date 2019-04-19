@@ -17,6 +17,10 @@
     text-overflow: inherit;
 }
 
+.today-date-badge {
+    background: linear-gradient( #36D1DC, #5B86E5 );
+}
+
 // modal
 table {
     table-layout: fixed;
@@ -50,6 +54,7 @@ h5 {
     }
 
     .today-date-badge {
+        background: linear-gradient( 45deg, #36D1DC, #5B86E5 );
         padding-left: 0;
         padding-right: .3rem;
     }
