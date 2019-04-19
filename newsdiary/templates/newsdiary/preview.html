@@ -6,6 +6,20 @@
     <nav class="navbar fixed-top navbar-light mnd-color text-white">
         <h4 class="month mb-4 text-center">{{temp.year}}년 {{view.month}}월 {{view.day}}일</h4>
     </nav>
+{% comment %} {{view.year}}
+{{view.month}}
+{{view.day}}
+<h2>팔로우하는 이슈</h2>
+{% for issue in issues %}
+    <strong># {{ issue.title }}</strong> <a href="{% url 'unfollow' issue.id %}?next={{request.path}}">언팔로우</a> | {{ issue.followers|length }} followers <br>
+    {% if issue.events.first %}
+    다가오는 일정: {{ issue.events.first.title }}<br>
+        {% with article=issue.events.first.articles.first %}
+            <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
+            {{ article.press }} | {{ article.created_at }}<br>
+        {% endwith %}
+    {% endif %}
+{% endfor %} {% endcomment %}
 
     <h2>팔로우하는 이슈</h2>
     {% for issue in issues %}
