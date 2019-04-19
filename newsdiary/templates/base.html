@@ -38,7 +38,7 @@
         <!-- bottom tab bar -->
         <!-- TODO: tab bar url -->
         <nav class="navbar fixed-bottom navbar-light bg-light text-center">
-            <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons {% if request.resolver_match.view_name == 'calendar' %}tab-active{% endif %}">home</i></a></div>
+            <div><a href="{% url 'temp' %}"><i class="tab-icon material-icons {% if request.resolver_match.view_name == 'calendar' %}tab-active{% endif %}">home</i></a></div>
             <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">book</i></a></div>
             <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">today</i></a></div>
             <div><a href="{% url 'signup' %}"><i class="tab-icon material-icons">local_post_office</i></a></div>
