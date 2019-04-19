@@ -115,9 +115,9 @@ class ReviewView(LoginRequiredMixin, ListView):
     context_object_name = 'articles'
 
     def get_queryset(self):
-        # 오늘 기사 중에, 사용자가 팔로우하고 있는 이슈에 대한, 혹은 사용자가 팔로우하고 있는 이슈에 대한 사건에 대한 기사들
+        # 오늘 기사 중에, 사용자가 팔로우하고 있는 일정에 대한 기사들
         today = Article.objects.filter(created_at__date=datetime.date.today())
-        return today.filter(issue__followers=self.request.user) | today.filter(event__issue__followers=self.request.user)
+        return today.filter(event__followers=self.request.user)
 
 def follow(request, pk):
     event = Event.objects.get(id=pk)
