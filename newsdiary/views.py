@@ -73,6 +73,9 @@ class CalendarView(LoginRequiredMixin, ListView):
     def last_weekday(self):
         return datetime.datetime(self.year(), self.month(), monthrange(self.year(), self.month())[1]).weekday()
 
+    def today(self):
+        return datetime.datetime.today().day
+
 class SignUpView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
@@ -93,6 +96,15 @@ class PreviewView(LoginRequiredMixin, ListView):
 
     def other_issues(self):
         return Issue.objects.exclude(followers=self.request.user)
+
+    def year(self):
+        return datetime.datetime.today().year
+
+    def month(self):
+        return datetime.datetime.today().month
+
+    def day(self):
+        return datetime.datetime.today().day
 
 class ReviewView(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'

@@ -2,6 +2,9 @@
 
 {% block content %}
 {% load custom_tags %}
+{{view.year}}
+{{view.month}}
+{{view.day}}
 <h2>팔로우하는 이슈</h2>
 {% for issue in issues %}
     <strong># {{ issue.title }}</strong> <a href="{% url 'unfollow' issue.id %}?next={{request.path}}">언팔로우</a> | {{ issue.followers|length }} followers <br>
