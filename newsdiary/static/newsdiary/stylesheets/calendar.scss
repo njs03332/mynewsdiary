@@ -34,6 +34,10 @@ h5 {
     margin-bottom: 0;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 @media (max-width:575px) {
     .month {
         font-size: 1.2rem;

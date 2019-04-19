@@ -52,17 +52,17 @@
                     <!-- event label 스타일 먹이는 효율적인 방법 찾기........ㅠㅠㅠㅠㅠㅠ-->
                     {% for event in view.day_events|index:day %}
                         {% if event.get_category_display == '정치' %}
-                            <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-danger text-white" 
+                            <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-danger text-white clickable" 
                             data-toggle="modal" data-target="#eventModal" data-title='{{ event.title }}' data-issue='{{ event.issue }}'
                             data-category='{{ event.get_category_display }}' data-concept='{{ event.concept }}' data-background='{{ event.background }}'
                             data-importance='{{ event.importance }}' data-article='{{ event.top_article }}'>{{ event.title }}</a>
                         {% elif event.get_category_display == '사회' %}
-                            <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-warning text-white" 
+                            <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-warning text-white clickable" 
                             data-toggle="modal" data-target="#eventModal" data-title='{{ event.title }}'
                             data-category='{{ event.get_category_display }}' data-concept='{{ event.concept }}' data-background='{{ event.background }}'
                             data-importance='{{ event.importance }}' data-article='{{ event.top_article }}'>{{ event.title }}</a>
                         {% elif event.get_category_display == '경제' %}
-                            <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-success text-white" 
+                            <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-success text-white clickable" 
                             data-toggle="modal" data-target="#eventModal" data-title='{{ event.title }}'
                             data-category='{{ event.get_category_display }}' data-concept='{{ event.concept }}' data-background='{{ event.background }}'
                             data-importance='{{ event.importance }}' data-article='{{ event.top_article }}'>{{ event.title }}</a>

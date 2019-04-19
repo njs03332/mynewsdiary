@@ -104,15 +104,15 @@ def create_issues():
             title="미세먼지 추경안 제출",
             categories=['POL']
     )
-    issues = [issue1, issue2, issue3, issue4, issue5, issue6, issue7, issue8, issue9, issue10]
-    for issue in issues:
-        if issue.id % 3 == 0:
-            issue.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
-        elif issue.id % 3 == 1:
-            issue.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
-        else:
-            issue.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
-        issue.save()
+    # issues = [issue1, issue2, issue3, issue4, issue5, issue6, issue7, issue8, issue9, issue10]
+    # for issue in issues:
+    #     if issue.id % 3 == 0:
+    #         issue.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
+    #     elif issue.id % 3 == 1:
+    #         issue.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
+    #     else:
+    #         issue.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
+    #     issue.save()
     return
 
 def create_events(self):
@@ -169,6 +169,15 @@ def create_events(self):
     #     datetime=timezone.make_aware(datetime(2019, 4, 12)),
     #     issue=Issue.objects.get(title="WTO 판결")
     # )
+    events = [event1, event2, event3, event4]
+    for event in events:
+        if event.id % 3 == 0:
+            event.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
+        elif event.id % 3 == 1:
+            event.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
+        else:
+            event.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
+        event.save()
     return
 
 def create_articles(self):

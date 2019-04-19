@@ -2,13 +2,20 @@
 
 {% block content %}
 {% load custom_tags %}
+<a href="{% url 'memos' %}">최신순으로 보기</a><br>
 {% for issue in issues %}
-    <strong><a href="{% url 'memo_issue' issue.id %}"># {{ issue.title }}</strong></a> <a href="{% url 'unfollow' issue.id %}?next={{request.path}}">언팔로우</a> | {{ issue.followers|length }} followers <br>
+    <strong><a href="{% url 'memo_issue' issue.id %}"># {{ issue.title }}</strong></a><br>
     <a href="{% url 'new_i' issue.id %}">메모쓰기</a>
     <details>
         <summary>관련 일정</summary>
         {% for event in issue|events %}
-            {{ event.datetime|date_only }}: {{ event.title }} - 
+            {{ event.datetime|date_only }}: {{ event.title }} 
+            {% if event in user.following_events %}
+                <a href="{% url 'unfollow' event.id %}?next={{request.path}}">언팔로우</a>
+            {% else %}
+                <a href="{% url 'follow' event.id %}?next={{request.path}}">팔로우</a>
+            {% endif %}
+            -
         {% endfor %}
     </details>
 {% endfor %}
