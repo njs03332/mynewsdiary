@@ -5,7 +5,8 @@
     <nav class="navbar fixed-top navbar-light mnd-color text-white">
         <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-white">keyboard_arrow_left</i></a>
         <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
-        <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-white">keyboard_arrow_right</i></a>   
+        <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-white">keyboard_arrow_right</i></a>  
+    </nav> 
     {% comment %} <nav class="navbar fixed-top navbar-light bg-light">
         <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_left</i></a>
         <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월오늘은 {{view.today}}일
@@ -40,8 +41,12 @@
             {% for day in view.days %}
                 <div class="day col p-1 border border-left-0 border-top-0 text-truncate ">
                     <h5 class="row align-items-center">
-                        <span class="date col-1">{{ day }}</span>
+                        {% if day == view.today %}
+                            <span class="date today-date-badge badge badge-pill badge-info">{{ day }}</span>
+                        {% else %}
+                            <span class="date col-1">{{ day }}</span>
                         <!---small class="col d-sm-none text-center text-muted">{{view.weekday}}</small-->
+                        {% endif %}
                         <span class="col-1"></span>
                     </h5>
                     <!-- event label 스타일 먹이는 효율적인 방법 찾기........ㅠㅠㅠㅠㅠㅠ-->

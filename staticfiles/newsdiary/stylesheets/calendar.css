@@ -2,10 +2,6 @@
   margin-bottom: 0 !important;
   display: inline-block; }
 
-.month-arrow {
-  display: inline-flex;
-  vertical-align: middle; }
-
 .week {
   font-weight: 400;
   margin-bottom: 0; }
@@ -36,6 +32,9 @@ h5 {
     margin: -3px -8px 0px -8px; }
   .day {
     height: 29vw !important; }
+  .today-date-badge {
+    padding-left: 0;
+    padding-right: .3rem; }
   .date {
     font-size: small;
     padding-left: 4px; }
