@@ -2,11 +2,10 @@
 
 {% block content %}
 {% load custom_tags %}
-    <nav class="navbar fixed-top navbar-light bg-light">
-        <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_left</i></a>
-        <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월오늘은 {{view.today}}일
-<br></h4>
-        <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-secondary">keyboard_arrow_right</i></a>   
+    <nav class="navbar fixed-top navbar-light mnd-color text-white">
+        <a href="{% url 'calendar' view.before %}"><i class="month-arrow material-icons text-white">keyboard_arrow_left</i></a>
+        <h4 class="month mb-4 text-center">{{view.year}}년 {{view.month}}월<br></h4>
+        <a href="{% url 'calendar' view.after %}"><i class="month-arrow material-icons text-white">keyboard_arrow_right</i></a>   
     </nav>
     <div class="container-fluid">
         <header>
@@ -44,7 +43,7 @@
                     {% for event in view.day_events|index:day %}
                         {% if event.get_category_display == '정치' %}
                             <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-danger text-white" 
-                            data-toggle="modal" data-target="#eventModal" data-title='{{ event.title }}'
+                            data-toggle="modal" data-target="#eventModal" data-title='{{ event.title }}' data-issue='{{ event.issue }}'
                             data-category='{{ event.get_category_display }}' data-concept='{{ event.concept }}' data-background='{{ event.background }}'
                             data-importance='{{ event.importance }}' data-article='{{ event.top_article }}'>{{ event.title }}</a>
                         {% elif event.get_category_display == '사회' %}
@@ -93,23 +92,23 @@
                     <table class="table table-borderless">
                         <tbody>
                             <tr>
-                            <th scope="row modal-row">분야</th>
-                            <td><span class="modal-event-category">분야</span></td>
+                            <th scope="row" class="modal-row">관련 이슈</th>
+                            <td><span class="modal-event-issue">분야</span></td>
                             </tr>
                             <tr>
-                            <th scope="row modal-row">개념</th>
+                            <th scope="row" class="modal-row">개념</th>
                             <td><span class="modal-event-concept">개념</span></td>
                             </tr>
                             <tr>
-                            <th scope="row modal-row">배경</th>
+                            <th scope="row" class="modal-row">배경</th>
                             <td><span class="modal-event-background">배경</span></td>
                             </tr>
                             <tr>
-                            <th scope="row modal-row">왜 중요해?</th>
+                            <th scope="row" class="modal-row">왜 중요해?</th>
                             <td><span class="modal-event-importance">중요</span></td>
                             </tr>
                             <tr>
-                            <th scope="row modal-row">대표 기사</th>
+                            <th scope="row" class="modal-row">대표 기사</th>
                             <td><span class="modal-event-article">기사</span></td>
                             </tr>
                         </tbody>

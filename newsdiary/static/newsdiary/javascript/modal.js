@@ -2,6 +2,7 @@
 $('#eventModal').on('show.bs.modal', function (event) {
     var eventLabel = $(event.relatedTarget) // Button that triggered the modal
     var eventTitle = eventLabel.data('title')
+    var eventIssue = eventLabel.data('issue')
     var eventCategory = eventLabel.data('category')
     var eventConcept = eventLabel.data('concept')
     var eventBackground = eventLabel.data('background')
@@ -26,7 +27,7 @@ $('#eventModal').on('show.bs.modal', function (event) {
         modal.find('.modal-event-title').addClass('bg-success')
     }
     modal.find('.modal-event-title').text(eventTitle)
-    modal.find('.modal-event-category').text(eventCategory)
+    modal.find('.modal-event-issue').text(eventIssue)
     modal.find('.modal-event-concept').text(eventConcept)
     modal.find('.modal-event-background').text(eventBackground)
     modal.find('.modal-event-importance').text(eventImportance)
