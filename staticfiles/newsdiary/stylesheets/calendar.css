@@ -13,6 +13,9 @@
 .date {
   font-weight: 300; }
 
+.text-truncate {
+  text-overflow: inherit; }
+
 table {
   table-layout: fixed; }
 
@@ -37,7 +40,6 @@ h5 {
     font-size: small;
     padding-left: 4px; }
   .event {
-    font-size: .1rem;
     padding: .2rem .5rem !important; } }
 
 @media (min-width: 576px) {

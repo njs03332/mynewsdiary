@@ -5,7 +5,7 @@
   padding: 1.3rem !important; }
 
 .container-fluid {
-  margin-top: 100px !important; }
+  margin: 100px 0 !important; }
 
 .fixed-bottom {
   position: fixed;
@@ -14,7 +14,12 @@
   left: 0;
   z-index: 1030; }
 
+.material-icons {
+  display: inline-flex;
+  vertical-align: middle; }
+
 .tab-icon {
+  font-size: 26px;
   color: lightgrey; }
 
 .tab-active {

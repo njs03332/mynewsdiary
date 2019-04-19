@@ -18,6 +18,10 @@
     font-weight: 300;
 }
 
+.text-truncate {
+    text-overflow: inherit;
+}
+
 // modal
 table {
     table-layout: fixed;
@@ -56,7 +60,6 @@ h5 {
     }
 
     .event {
-        font-size: .1rem;
         padding: .2rem .5rem !important;
     }
 }
