@@ -163,6 +163,12 @@ def create_events(self):
         datetime=timezone.make_aware(datetime(2019, 4, 12)),
         issue=Issue.objects.get(title="WTO 판결")
     )
+    # event5 = Event.objects.create(
+    #     title="한미 방위비 협상",
+    #     category='ECON',
+    #     datetime=timezone.make_aware(datetime(2019, 4, 12)),
+    #     issue=Issue.objects.get(title="WTO 판결")
+    # )
     return
 
 def create_articles(self):
