@@ -88,16 +88,17 @@ class ArticleDetailView(DetailView):
 
     def first_article(self):
         return Article.objects.first().id
+
 class PreviewView(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     template_name = 'newsdiary/preview.html'
-    context_object_name = 'issues'
+    context_object_name = 'events'
 
     def get_queryset(self):
-        return self.request.user.following_issues.all()
+        return self.request.user.following_events.all()
 
-    def other_issues(self):
-        return Issue.objects.exclude(followers=self.request.user)
+    def other_events(self):
+        return Event.objects.exclude(followers=self.request.user)
 
     def year(self):
         return datetime.datetime.today().year
@@ -119,15 +120,17 @@ class ReviewView(LoginRequiredMixin, ListView):
         return today.filter(issue__followers=self.request.user) | today.filter(event__issue__followers=self.request.user)
 
 def follow(request, pk):
-    issue = Issue.objects.get(id=pk)
-    issue.followers.add(request.user)
-    issue.save()
+    event = Event.objects.get(id=pk)
+    event.followers.add(request.user)
+    event.save()
+    event.issue.followers.add(request.user)
+    event.save()
     return HttpResponseRedirect(request.GET['next'])
 
 def unfollow(request, pk):
-    issue = Issue.objects.get(id=pk)
-    issue.followers.remove(request.user)
-    issue.save()
+    event = Event.objects.get(id=pk)
+    event.followers.remove(request.user)
+    event.save()
     return HttpResponseRedirect(request.GET['next'])
 
 class CreateMemoArticleView(LoginRequiredMixin, CreateView):
@@ -181,7 +184,16 @@ class IssueListView(LoginRequiredMixin, ListView):
     context_object_name = 'issues'
 
     def get_queryset(self):
-        return self.request.user.following_issues.all()
+        issues = Issue.objects.filter(followers=self.request.user)
+        for memo in self.request.user.memos.all():
+            if memo.article:
+                if memo.article.issue:
+                    issues |= Issue.objects.filter(pk=memo.article.issue.pk)
+                elif memo.article.event:
+                    issues |= Issue.objects.filter(pk=memo.article.event.issue.pk)
+            elif memo.issue:
+                issues |= Issue.objects.filter(pk=memo.issue.pk)
+        return issues
 
 class MemoIssueListView(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'

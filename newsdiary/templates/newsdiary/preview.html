@@ -21,36 +21,36 @@
     {% endif %}
 {% endfor %} {% endcomment %}
 
-    <h2>팔로우하는 이슈</h2>
-    {% for issue in issues %}
-        <strong># </strong> {{ issue.title }}
-        <a href="{% url 'unfollow' issue.id %}?next={{request.path}}">
+    <h2>내가 팔로우하는 일정</h2>
+    {% for event in events %}
+        <strong># </strong> {{ event.title }}
+        <a href="{% url 'unfollow' event.id %}?next={{request.path}}">
             <i class="fas fa-star"></i>
             {% comment %} <i class="material-icons">star</i> {% endcomment %}
-        </a> | {{ issue.followers|length }} followers <br>
-        {% if issue.events.first %}
-        다가오는 일정: <span class="p-1 pl-2 pr-2 rounded text-truncate text-white bg-danger" id="exampleModalLongTitle">{{ issue.events.first.title }}</span><br>
-            {% with article=issue.events.first.articles.first %}
-                <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
-                {{ article.press }} | {{ article.created_at }}<br>
-            {% endwith %}
+        </a> | {{ event.followers|length }} followers <br>
+        {% with article=event.articles.first %}
+            <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
+            {{ article.press }} | {{ article.created_at }}<br>
+        {% endwith %}
+        {% if event.issue.events|length > 1 %}
+        관련한 다른 일정: <span class="p-1 pl-2 pr-2 rounded text-truncate text-white bg-danger" id="exampleModalLongTitle">{{ event.issue.events.last.title }}</span><br>
         {% endif %}
     {% endfor %}
 
 
 
-    <h2>4월의 다른 이슈</h2>
-    {% for issue in view.other_issues %}
-        <strong># {{ issue.title }}</strong>
-        <a href="{% url 'follow' issue.id %}?next={{request.path}}">
+    <h2>다가오는 다른 일정</h2>
+    {% for event in view.other_events %}
+        <strong># {{ event.title }}</strong>
+        <a href="{% url 'follow' event.id %}?next={{request.path}}">
             <i class="far fa-star"></i>
-        </a> | {{ issue.followers|length }} followers <br>
-        {% if issue.events.first %}
-        다가오는 일정: {{ issue.events.first.title }}<br>
-            {% with article=issue.events.first.articles.first %}
-                <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
-                {{ article.press }} | {{ article.created_at }}<br>
-            {% endwith %}
+        </a> | {{ event.followers|length }} followers <br>
+        {% with article=event.articles.first %}
+            <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
+            {{ article.press }} | {{ article.created_at }}<br>
+        {% endwith %}
+        {% if event.issue.events|length > 1 %}
+        관련한 다른 일정: {{ event.issue.events.last.title }}<br>
         {% endif %}
     {% endfor %}
 </div>
