@@ -5,13 +5,17 @@
 <!-- 이 페이지에서 오른쪽 밑에 항상 떠있는 floating button?이면 좋을 것 같다 -->
 <a href="{% url 'new_a' article.id %}">메모 버튼</a>
 <div>
+    <button class="memo-btn btn pmd-btn-fab pmd-ripple-effect btn-primary" type="button">
+        <i class="material-icons text-white">create</i>
+    </button>
     {{ article.press }}
     <h1>{{ article.title }}</h1>
-    작성일: {{article.created_at}}<br>
-    {% if article.updated_at %}
-        | 수정일: {{article.updated_at}}
-    {% endif %}
-
+    <div class="small text-secondary">
+        작성일: {{article.created_at}}<br>
+        {% if article.updated_at %}
+        수정일: {{article.updated_at}}
+        {% endif %}
+    </div>
     {% if article.id == view.first_article %}
         {% include 'newsdiary/article/article1.html' %}
     {% comment %} {% elif article.id == view.first_article+1 %}
