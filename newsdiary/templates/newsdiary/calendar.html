@@ -39,7 +39,7 @@
             {% endfor %}
             <!-- 나머지 날짜 -->
             {% for day in view.days %}
-                <div class="day col p-1 border border-left-0 border-top-0 text-truncate ">
+                <div class="day col p-1 border border-left-0 border-top-0 text-truncate">
                     <h5 class="row align-items-center">
                         {% if day == view.today %}
                             <span class="date today-date-badge badge badge-pill text-white">{{ day }}</span>
@@ -66,6 +66,12 @@
                             data-toggle="modal" data-target="#eventModal" data-title='{{ event.title }}'
                             data-category='{{ event.get_category_display }}' data-concept='{{ event.concept }}' data-background='{{ event.background }}'
                             data-importance='{{ event.importance }}' data-article='{{ event.top_article }}'>{{ event.title }}</a>
+                        {% elif event.get_category_display == '세계' %}
+                            <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-violet text-white clickable" 
+                            data-toggle="modal" data-target="#eventModal" data-title='{{ event.title }}'
+                            data-category='{{ event.get_category_display }}' data-concept='{{ event.concept }}' data-background='{{ event.background }}'
+                            data-importance='{{ event.importance }}' data-article='{{ event.top_article }}'>{{ event.title }}</a>
+                        
                         {% endif %}
                     {% endfor %}
                     {% comment %} <p class="d-sm-none">No events</p> {% endcomment %}
@@ -93,10 +99,10 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header justify-content-center">
-                    <h5 class="modal-event-title d-block p-1 pl-2 pr-2 rounded text-truncate text-white" id="exampleModalLongTitle">Modal event title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h6 class="modal-event-title d-block p-1 pl-2 pr-2 rounded text-truncate text-white" id="exampleModalLongTitle">Modal event title</h6>
+                    {% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button> {% endcomment %}
                 </div>
                 <div class="modal-body">
                     <table class="table table-borderless">
