@@ -125,8 +125,9 @@ class ReviewView(LoginRequiredMixin, ListView):
         return Article.objects.filter(title="후쿠시마 수산물 계속 못 들어온다…한국, WTO 분쟁서 승소")
 
     def other_articles(self):
-        today = Article.objects.filter(created_at__date=datetime.date.today())
-        return today.exclude(event__followers=self.request.user)
+        # today = Article.objects.filter(created_at__date=datetime.date.today())
+        # return today.exclude(event__followers=self.request.user)
+        return Article.objects.filter(title="임신중지 입법…기간·사유 제한으로 논의 좁히면 안 돼") | Article.objects.filter(title="유럽 증시, 브렉시트 연기에 투자심리 호전 상승 마감...런던만 약보합")
 
     def year(self):
         return datetime.datetime.today().year

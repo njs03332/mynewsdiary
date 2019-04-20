@@ -53,10 +53,10 @@
     {% endfor %}
 
 <br>
-<div class="section-title">이런 일도 있었어요</div>
+<div class="section-title">지난 사건 후속기사</div>
 <hr>
     {% for article in view.other_articles %}
-    {% with article=article.event %}
+    {% with event=article.event %}
             <a href="{% url 'article' article.id %}">
                 <div class="article-box shadow-sm p-2 bg-white rounded">
                     <div class="image-box">

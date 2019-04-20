@@ -283,6 +283,18 @@ def create_articles(self):
         press="~~",
         event=Event.objects.get(title="바른미래당 회의")
     )
+    article4 = Article.objects.create(
+        created_at=timezone.make_aware(datetime(2019,4,12)),
+        title="임신중지 입법…기간·사유 제한으로 논의 좁히면 안 돼",
+        press="~~",
+        event=Event.objects.get(title="낙태죄 판결")
+    )
+    article4 = Article.objects.create(
+        created_at=timezone.make_aware(datetime(2019,4,12)),
+        title="유럽 증시, 브렉시트 연기에 투자심리 호전 상승 마감...런던만 약보합",
+        press="~~",
+        event=Event.objects.get(title="브렉시트")
+    )
     # article = Article.objects.create(
     #         created_at=timezone.make_aware(datetime()),
     #         # updated_at=timezone.now(),
