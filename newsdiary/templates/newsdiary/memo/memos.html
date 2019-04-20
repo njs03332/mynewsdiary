@@ -2,18 +2,45 @@
 
 {% block content %}
 {% load custom_tags %}
-<a href="{% url 'memos_issue' %}">이슈별로 보기</a><br>
-{% for memo in memos %}
-    <div>
-        {{ memo.created_at|date_only }}
-        <div style="color: gray;">
-            {% if memo.issue %}
-                # {{ memo.issue.title }}
-            {% elif memo.article %}
-                {{ memo.article.title }}
-            {% endif %}
+
+<!-- memo nav bar-->
+<nav class="navbar fixed-top navbar-light bg-light justify-content-center">
+    <h4 class="month mb-4 text-center">메모<br></h4>
+</nav>
+
+<div class="container-memo">
+    <!-- nav filtering nav tabs-->
+
+    <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'memos' %}">최신순</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'memos_issue' %}">이슈별</a>
+        </li>
+    </ul>
+
+    <!-- memo timeline-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <ul class="timeline">
+                    {% for memo in memos %}
+                        <li>
+                            <a target="_blank" href="https://www.totoprayogo.com/#">
+                                {% if memo.issue %}
+                                    # {{ memo.issue.title }}
+                                {% elif memo.article %}
+                                    {{ memo.article.title }}
+                                {% endif %}
+                            </a>
+                            <a href="#" class="float-right">{{ memo.created_at|date_only }}</a>
+                            <p><a href="{% url 'memo' memo.id %}">{{ memo.title }}</a></p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        <a href="{% url 'memo' memo.id %}">{{ memo.title }}</a>
     </div>
-{% endfor %}
+</div>
 {% endblock content %}
