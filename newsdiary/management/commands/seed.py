@@ -165,7 +165,7 @@ def create_events(self):
     )
     event5 = Event.objects.create(
         title="한미 방위비 협정",
-        category='POL',
+        category='WRD',
         datetime=timezone.make_aware(datetime(2019, 4, 5)),
         issue=Issue.objects.get(title="한미 방위비 협정")
     )
@@ -199,7 +199,7 @@ def create_events(self):
     )
     event12 = Event.objects.create(
         title="윤중천 구속여부 심사일",
-        category='SOC',
+        category='ECON',
         datetime=timezone.make_aware(datetime(2019, 4, 19))
     )
     event13 = Event.objects.create(
@@ -210,61 +210,79 @@ def create_events(self):
     )
     event14 = Event.objects.create(
         title="김경수 공판 기일",
-        category='POL',
+        category='ECON',
         datetime=timezone.make_aware(datetime(2019, 4, 25))
     )
-    events = [event1, event2, event3, event4, event5, event6, event7, event8, event9, event11, event12, event13, event14]
-    for event in events:
-        if event.id % 3 == 0:
-            event.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
-        elif event.id % 3 == 1:
-            event.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
-        else:
-            event.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
-        event.save()
+    # events = [event1, event2, event3, event4, event5, event6, event7, event8, event9, event11, event12, event13, event14]
+    # for event in events:
+    #     if event.id % 3 == 0:
+    #         event.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
+    #     elif event.id % 3 == 1:
+    #         event.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
+    #     else:
+    #         event.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())
+    #     event.save()
     return
 
 def create_articles(self):
-    first_event = Event.objects.first().id
-    for i in range(5):
-        article = Article.objects.create(
-            created_at=timezone.now(),
-            updated_at=timezone.now(),
-            title=self.kofake.catch_phrase(),
+    # first_event = Event.objects.first().id
+    # for i in range(5):
+    #     article = Article.objects.create(
+    #         created_at=timezone.now(),
+    #         updated_at=timezone.now(),
+    #         title=self.kofake.catch_phrase(),
+    #         press='한겨레',
+    #         issue=Issue.objects.order_by("?").first()
+    #     )
+    # for i in range(30):
+    #     article = Article.objects.create(
+    #         created_at=timezone.now(),
+    #         updated_at=timezone.now(),
+    #         title=self.kofake.catch_phrase(),
+    #         press='jtbc뉴스',
+    #         event=Event.objects.order_by("?").first()
+    #     )
+    # for i in range(4):
+    #     article = Article.objects.create(
+    #         created_at=timezone.now(),
+    #         updated_at=timezone.now(),
+    #         title=self.kofake.catch_phrase(),
+    #         press='연합뉴스',
+    #         parent_event=Event.objects.get(pk=first_event)
+    #     )
+    #     first_event += 1
+    article = Article.objects.create(
+            created_at=timezone.make_aware(datetime(2019,4,11)),
+            # updated_at=timezone.now(),
+            title="WTO ‘후쿠시마산 수산물 분쟁’ 끝내 일본 손 들어주나?",
+            press='JTBC',
+            event=Event.objects.get(title="WTO 판결")
+        )
+    article2 = Article.objects.create(
+            created_at=timezone.make_aware(datetime(2019,4,12)),
+            # updated_at=timezone.now(),
+            title="후쿠시마 수산물 계속 못 들어온다…한국, WTO 분쟁서 승소",
             press='한겨레',
-            issue=Issue.objects.order_by("?").first()
+            event=Event.objects.get(title="WTO 판결")
         )
-    for i in range(30):
-        article = Article.objects.create(
-            created_at=timezone.now(),
-            updated_at=timezone.now(),
-            title=self.kofake.catch_phrase(),
-            press='jtbc뉴스',
-            event=Event.objects.order_by("?").first()
-        )
-    for i in range(4):
-        article = Article.objects.create(
-            created_at=timezone.now(),
-            updated_at=timezone.now(),
-            title=self.kofake.catch_phrase(),
-            press='연합뉴스',
-            parent_event=Event.objects.get(pk=first_event)
-        )
-        first_event += 1
-    # article = Article.objects.create(
-    #         created_at=timezone.make_aware(datetime(2019,3,21)),
-    #         # updated_at=timezone.now(),
-    #         title="4.3 재보선 선거운동 시작…… 여야, 민심 잡기 총력전",
-    #         press='JTBC',
-    #         event=Event.objects.get(title="4.3 보궐선거")
-    #     )
-    # article = Article.objects.create(
-    #         created_at=timezone.make_aware(datetime()),
-    #         # updated_at=timezone.now(),
-    #         title="",
-    #         press='',
-    #         issue=Issue.objects.get(title="")
-    #     )
+    article3 = Article.objects.create(
+        created_at=timezone.make_aware(datetime(2019,4,9)),
+        title="\"노딜 브렉시트는 안돼\"…영국 상·하원 브렉시트 연기",
+        press="~~",
+        event=Event.objects.get(title="브렉시트")
+    )
+    article3 = Article.objects.create(
+        created_at=timezone.make_aware(datetime(2019,4,9)),
+        title="이미선 “주식 처분” 사퇴 거부…정의당은 조건부 찬성 선회",
+        press="~~",
+        event=Event.objects.get(title="한국당 이미선 고발")
+    )
+    article3 = Article.objects.create(
+        created_at=timezone.make_aware(datetime(2019,4,10)),
+        title="또 '반쪽 최고위'…바른정당계 \"총사퇴\" vs 孫 \"한분씩 만날것\"",
+        press="~~",
+        event=Event.objects.get(title="바른미래당 회의")
+    )
     # article = Article.objects.create(
     #         created_at=timezone.make_aware(datetime()),
     #         # updated_at=timezone.now(),

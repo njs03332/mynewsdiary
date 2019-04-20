@@ -35,6 +35,8 @@
         </div>
         {% if article.id == view.first_article %}
             {% include 'newsdiary/article/article1.html' %}
+        {% elif article.id == view.next_article %}
+            {% include 'newsdiary/article/article2.html' %}
         {% comment %} {% elif article.id == view.first_article+1 %}
             {% include 'newsdiary/article/article2.html' %}
         {% elif article.id == view.first_article+2 %}

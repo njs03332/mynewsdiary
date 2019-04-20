@@ -12,6 +12,7 @@
 <div class="section-title">팔로우하는 일정</div>
 <hr>
     {% for event in events %}
+        {% if event.articles.first %}
         {% with article=event.articles.first %}
             <a href="{% url 'article' article.id %}">
                 <div class="article-box shadow-sm bg-white">
@@ -51,6 +52,7 @@
                 </div>
             </a>
         {% endwith %}
+        {% endif %}
         
     {% endfor %}
 
@@ -58,6 +60,7 @@
 <div class="section-title">다가오는 다른 일정</div>
 <hr>
     {% for event in view.other_events %}
+    {% if event.articles.first %}
         {% with article=event.articles.first %}
             <a href="{% url 'article' article.id %}">
                 <div class="article-box shadow-sm p-2 bg-white rounded">
@@ -83,10 +86,10 @@
                                 <a style="text-decoration: none;"  href="{% url 'follow' event.id %}?next={{request.path}}">
                                     <i class="far fa-star"></i>
                                 </a> 
-                                <span class="follower-number">{{ event.followers|length }} followers</span>
+                                <span class="follower-number">3,412 followers</span>
                             </div>
-                            <div class="article-header-right">
-                                <span class="d-day">&nbsp;{{ event|days_left }}일 후</span>
+                            <div>
+                                <span class="badge bg-secondary text-white">&nbsp;D{{ event|days_left }}</span>
                             </div>
                         </div>
                         <div class="article-box-title">
@@ -100,6 +103,7 @@
                 </div>
             </a>
         {% endwith %}
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock content %}
