@@ -8,6 +8,7 @@ $('#eventModal').on('show.bs.modal', function (event) {
     var eventBackground = eventLabel.data('background')
     var eventImportance = eventLabel.data('importance')
     var eventArticle = eventLabel.data('article')
+    var eventFollowers = eventLabel.data('followers')
      // Extract info from data-* attributes
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -38,7 +39,19 @@ $('#eventModal').on('show.bs.modal', function (event) {
     modal.find('.modal-event-title').text(eventTitle)
     modal.find('.modal-event-issue').text(eventIssue)
     modal.find('.modal-event-concept').text(eventConcept)
+    modal.find('.follower-number').text(eventFollowers)
     modal.find('.modal-event-background').text(eventBackground)
     modal.find('.modal-event-importance').text(eventImportance)
     modal.find('.modal-event-article').text(eventArticle)
 })
+
+$('#modal-follow').click(function(event) {
+    $(this).find('i').removeClass('far')
+    $(this).find('i').addClass('fas')
+    console.log('hi')
+});
+
+$(document).on('click', '#modal-follow', function(e) {
+    $(this).find('i').remoClass('fas fa-star')
+    console('yeah!')
+});
