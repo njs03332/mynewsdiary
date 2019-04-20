@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "issue.css",
+	"sources": [
+		"issue.scss"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,eAAe,CAAC;EACZ,MAAM,EAAE,oBAAoB,GAC/B"
+}
