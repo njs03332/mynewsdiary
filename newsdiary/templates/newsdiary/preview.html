@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
     <nav class="navbar fixed-top navbar-light bg-light justify-content-center">
-        <h4 class="month mb-4 text-center">{{ view.year }}년 {{ view.month }}월 {{ view.day }}일</h4>
+        <h4 class="month mb-4 text-center">Preview</h4>
     </nav>
 
 <div class="section-title">팔로우하는 일정</div>
@@ -37,7 +37,7 @@
                                 {% endif %}
                             </div>
                             <div>
-                                <span class="badge bg-secondary text-white">&nbsp;D{{ event|days_left }}</span>
+                                <span class="badge bg-secondary text-white">&nbsp;D-{{ event|days_left }}</span>
                             </div>
                         </div>
 
@@ -89,7 +89,7 @@
                                 <span class="follower-number">3,412 followers</span>
                             </div>
                             <div>
-                                <span class="badge bg-secondary text-white">&nbsp;D{{ event|days_left }}</span>
+                                <span class="badge bg-secondary text-white">&nbsp;D-{{ event|days_left }}</span>
                             </div>
                         </div>
                         <div class="article-box-title">
