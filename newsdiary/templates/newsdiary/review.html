@@ -57,7 +57,7 @@
 <div class="section-title">이런 일도 있었어요</div>
 <hr>
     {% for article in view.other_articles %}
-    {% with article=event.article %}
+    {% with article=article.event %}
             <a href="{% url 'article' article.id %}">
                 <div class="article-box shadow-sm p-2 bg-white rounded">
                     <div class="image-box">
@@ -79,10 +79,11 @@
                                     <a class="event p-1 rounded small bg-violet text-white" >
                                     {{ event.title }}</a>
                                 {% endif %}
-                                <a href="{% url 'follow' event.id %}?next={{request.path}}">
+                                {{event.id}}
+                                {% comment %} <a href="{% url 'follow' event.id %}?next={{request.path}}">
                                     <i class="far fa-star"></i>
-                                </a> 
-                                <span class="follower-number">{{ event.followers|length }} followers</span>
+                                </a>  {% endcomment %}
+                                {% comment %} <span class="follower-number">{{ event.followers|length }} followers</span> {% endcomment %}
                             </div>
                             <div class="article-header-right">
                                 <span class="d-day">&nbsp;{{ event|days_left }}일 후</span>

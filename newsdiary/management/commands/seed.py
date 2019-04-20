@@ -73,7 +73,7 @@ def create_issues():
             categories=['POL']
     )
     issue3 = Issue.objects.create(
-            title="5.18 피고인' 전두환",
+            title="5.18 피의자 전두환",
             categories=['POL', 'SOC']
     )
     issue4 = Issue.objects.create(
@@ -163,13 +163,57 @@ def create_events(self):
         datetime=timezone.make_aware(datetime(2019, 4, 12)),
         issue=Issue.objects.get(title="WTO 판결")
     )
-    # event5 = Event.objects.create(
-    #     title="한미 방위비 협상",
-    #     category='ECON',
-    #     datetime=timezone.make_aware(datetime(2019, 4, 12)),
-    #     issue=Issue.objects.get(title="WTO 판결")
-    # )
-    events = [event1, event2, event3, event4]
+    event5 = Event.objects.create(
+        title="한미 방위비 협정",
+        category='POL',
+        datetime=timezone.make_aware(datetime(2019, 4, 5)),
+        issue=Issue.objects.get(title="한미 방위비 협정")
+    )
+    event6 = Event.objects.create(
+        title="전두환 출석",
+        category='SOC',
+        datetime=timezone.make_aware(datetime(2019, 4, 8)),
+        issue=Issue.objects.get(title="5.18 피의자 전두환")
+    )
+    event7 = Event.objects.create(
+        title="브렉시트",
+        category='WRD',
+        datetime=timezone.make_aware(datetime(2019, 4, 12)),
+        issue=Issue.objects.get(title="브렉시트")
+    )
+    event8 = Event.objects.create(
+        title="바른미래당 회의",
+        category='POL',
+        datetime=timezone.make_aware(datetime(2019, 4, 17)),
+    )
+    event9 = Event.objects.create(
+        title="미세먼지 추경안 제출",
+        category='SOC',
+        datetime=timezone.make_aware(datetime(2019, 4, 25)),
+    )
+    event11 = Event.objects.create(
+        title="이미선 임명?",
+        category='POL',
+        datetime=timezone.make_aware(datetime(2019, 4, 19)),
+        issue=Issue.objects.get(title="헌재 인사청문회")
+    )
+    event12 = Event.objects.create(
+        title="윤중천 구속여부 심사일",
+        category='SOC',
+        datetime=timezone.make_aware(datetime(2019, 4, 19))
+    )
+    event13 = Event.objects.create(
+        title="한국당 이미선 고발",
+        category='POL',
+        datetime=timezone.make_aware(datetime(2019, 4, 15)),
+        issue=Issue.objects.get(title="헌재 인사청문회")
+    )
+    event14 = Event.objects.create(
+        title="김경수 공판 기일",
+        category='POL',
+        datetime=timezone.make_aware(datetime(2019, 4, 25))
+    )
+    events = [event1, event2, event3, event4, event5, event6, event7, event8, event9, event11, event12, event13, event14]
     for event in events:
         if event.id % 3 == 0:
             event.followers.add(User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first(), User.objects.order_by("?").first())

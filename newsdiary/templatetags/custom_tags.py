@@ -13,7 +13,7 @@ def length(QuerySet):
 
 @register.filter
 def days_left(Event):
-    return (Event.datetime.date() - datetime.today().date()).days
+    return (Event.datetime.date() - datetime(2019,4,11).date()).days
 
 @register.filter
 def events(Issue):
