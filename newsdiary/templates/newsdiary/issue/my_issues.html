@@ -8,7 +8,7 @@
     <h4 class="month mb-4 text-center">메모<br></h4>
 </nav>
 
-<div class="container-memo">
+<div class="container-fluid">
     <!-- nav filtering nav tabs-->
 
     <ul class="nav nav-pills justify-content-center">
@@ -20,21 +20,23 @@
         </li>
     </ul>
 
-    {% for issue in issues %}
-        <strong><a href="{% url 'memo_issue' issue.id %}"># {{ issue.title }}</strong></a><br>
-        <a href="{% url 'new_i' issue.id %}">메모쓰기</a>
-        <details>
-            <summary>관련 일정</summary>
-            {% for event in issue|events %}
-                {{ event.datetime|date_only }}: {{ event.title }} 
-                {% if event in user.following_events %}
-                    <a href="{% url 'unfollow' event.id %}?next={{request.path}}">언팔로우</a>
-                {% else %}
-                    <a href="{% url 'follow' event.id %}?next={{request.path}}">팔로우</a>
-                {% endif %}
-                -
-            {% endfor %}
-        </details>
-    {% endfor %}
+    <div class="container-issue">
+        {% for issue in issues %}
+            <h6 class="issue d-block p-1 pl-2 pr-2 rounded text-truncate text-black border-danger"># {{ issue.title }}</h6>
+            <a href="{% url 'new_i' issue.id %}">메모쓰기</a>
+            <details>
+                <summary>관련 일정</summary>
+                {% for event in issue|events %}
+                    {{ event.datetime|date_only }}: {{ event.title }} 
+                    {% if event in user.following_events %}
+                        <a href="{% url 'unfollow' event.id %}?next={{request.path}}">언팔로우</a>
+                    {% else %}
+                        <a href="{% url 'follow' event.id %}?next={{request.path}}">팔로우</a>
+                    {% endif %}
+                    -
+                {% endfor %}
+            </details>
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}

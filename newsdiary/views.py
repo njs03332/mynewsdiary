@@ -119,6 +119,19 @@ class ReviewView(LoginRequiredMixin, ListView):
         today = Article.objects.filter(created_at__date=datetime.date.today())
         return today.filter(event__followers=self.request.user)
 
+    def other_articles(self):
+        today = Article.objects.filter(created_at__date=datetime.date.today())
+        return today.exclude(event__followers=self.request.user)
+
+    def year(self):
+        return datetime.datetime.today().year
+
+    def month(self):
+        return datetime.datetime.today().month
+
+    def day(self):
+        return datetime.datetime.today().day
+
 def follow(request, pk):
     event = Event.objects.get(id=pk)
     event.followers.add(request.user)

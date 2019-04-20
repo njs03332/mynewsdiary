@@ -1,0 +1,53 @@
+.follower-number {
+    font-size: 10px;
+    color: grey;
+}
+
+.article-box-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 3px 0;
+}
+
+.article-box-footer {
+    font-size: 11px;
+}
+
+.article-box {
+    margin: 5px 0;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    
+}
+
+.section-title {
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+hr { 
+    margin: 2px 0;
+}
+
+.image-box img {
+    width: 90%;
+    height: 75px;
+    object-fit: contain;
+}
+
+a {
+    color: black;
+}
+
+.article-header {
+    display: grid;
+    grid-template-columns: 0 80% 20%;
+}
+
+.article-header-right {
+    background: rgb(201, 201, 201);
+}
+.d-day {
+    font-size: 12px;
+}

@@ -5,5 +5,5 @@
 		"issue.scss"
 	],
 	"names": [],
-	"mappings": "AAAA,AAAA,eAAe,CAAC;EACZ,MAAM,EAAE,oBAAoB,GAC/B"
+	"mappings": "AAAA,AAAA,gBAAgB,CAAC;EACb,UAAU,EAAE,eAAe,GAC9B;;AAED,AAAA,eAAe,CAAC;EACZ,WAAW,EAAC,CAAC,GAChB"
 }

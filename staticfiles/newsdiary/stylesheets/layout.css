@@ -5,7 +5,7 @@
   padding: 1.3rem !important; }
 
 .container-fluid {
-  margin: 90px 0 !important; }
+  margin: 75px 0 !important; }
 
 .bg-violet {
   background-color: #6610f2; }
@@ -39,5 +39,8 @@
   background: -webkit-linear-gradient(#36D1DC, #5B86E5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; }
+
+.far {
+  color: #5699E3; }
 
 /*# sourceMappingURL=layout.css.map */

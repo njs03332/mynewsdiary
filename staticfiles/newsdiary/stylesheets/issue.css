@@ -1,4 +1,7 @@
-.container-memo {
-  margin: 90px 10px !important; }
+.container-issue {
+  margin-top: 15px !important; }
+
+.related-events {
+  padding-top: 0; }
 
 /*# sourceMappingURL=issue.css.map */
