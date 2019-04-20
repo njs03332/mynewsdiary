@@ -2,9 +2,14 @@
 
 {% block content %}
 {% load custom_tags %}
-    하는중.... 구상이 덜 된거 같아..
 
 {% for article in articles %}
-    {{article.title}}
+    <strong># </strong> {{ article.event.title }}
+    <a href="{% url 'unfollow' article.event.id %}?next={{request.path}}">
+        <i class="fas fa-star"></i>
+        {% comment %} <i class="material-icons">star</i> {% endcomment %}
+    </a> | {{ article.event.followers|length }} followers <br>
+    <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
+    {{ article.press }} | {{ article.created_at }}<br>
 {% endfor %}
 {% endblock content %}
