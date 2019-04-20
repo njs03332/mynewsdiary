@@ -46,7 +46,7 @@
                                     <div class="text-secondary">{{ memo.article.title }}</div>
                             {% endif %}
                                     <p class="float-right memo-create-at">{{ memo.created_at|date_only }}</p>
-                                    <span class="text-secondary">memo: </span><a class="text-black" href="{% url 'memo' memo.id %}">{{ memo.title }}</a>
+                                    <span class="text-secondary"></span><i class="far fa-sticky-note"></i> &nbsp;&nbsp;<a class="text-black" href="{% url 'memo' memo.id %}">{{ memo.title }}</a>
                                 </li>
 
                         {% elif memo.issue %}
@@ -64,7 +64,7 @@
                                     <h6 class="issue d-block p-1 pl-2 pr-2 rounded text-truncate border-violet">{{ memo.issue.title }}</h6>
                             {% endif %}
                                     <p class="float-right memo-create-at">{{ memo.created_at|date_only }}</p>
-                                    <span class="text-secondary">memo: </span><a class="text-black" href="{% url 'memo' memo.id %}">{{ memo.title }}</a>
+                                    <span class="text-secondary"></span><i class="far fa-sticky-note"></i>&nbsp;&nbsp;<a class="text-black" href="{% url 'memo' memo.id %}">{{ memo.title }}</a>
                                 </li>
                         {% endif %}
 

@@ -171,6 +171,10 @@ hr {
     font-size: 11px;
 }
 
+.not-small {
+    font-size: 13px;
+}
+
 .tiny {
     font-size: 10px;
 }

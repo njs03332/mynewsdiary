@@ -27,7 +27,10 @@ table {
 }
 
 .modal-row {
-    width: 30% !important;
+    // width: 20% !important;
+}
+td {
+    width: 85%;
 }
 
 .modal-event-title {
@@ -70,7 +73,7 @@ table {
 
     .event {
         padding: .2rem .5rem !important;
-        font-size: 50% !important;
+        font-size: 80% !important;
     }
 }
 

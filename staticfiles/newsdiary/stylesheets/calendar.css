@@ -18,8 +18,8 @@
 table {
   table-layout: fixed; }
 
-.modal-row {
-  width: 30% !important; }
+td {
+  width: 85%; }
 
 .modal-event-title {
   margin-bottom: 0 !important; }
@@ -47,7 +47,7 @@ table {
     padding-left: 4px; }
   .event {
     padding: .2rem .5rem !important;
-    font-size: 50% !important; } }
+    font-size: 80% !important; } }
 
 @media (min-width: 576px) {
   .day {
