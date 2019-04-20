@@ -76,6 +76,28 @@ ul.timeline > li {
   z-index: 400; }
 
 .memo-create-at {
-  font-size: 80%; }
+  font-size: 80%;
+  color: lightgray; }
+
+.issue {
+  border: 1px solid;
+  vertical-align: middle;
+  border-radius: .25rem;
+  margin-bottom: .5rem; }
+
+.border-danger {
+  border-color: #dc3545 !important; }
+
+.border-warning {
+  border-color: #ffc107 !important; }
+
+.border-success {
+  border-color: #28a745 !important; }
+
+.border-violet {
+  border-color: #6610f2 !important; }
+
+.border-grey {
+  border-color: lightgrey !important; }
 
 /*# sourceMappingURL=memo.css.map */

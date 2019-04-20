@@ -13,7 +13,7 @@
 
     <ul class="nav nav-pills justify-content-center">
         <li class="nav-item">
-            <a class="nav-link active" href="{% url 'memos' %}">최신순</a>
+            <a class="nav-link text-white active" href="{% url 'memos' %}">최신순</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{% url 'memos_issue' %}">이슈별</a>
@@ -30,30 +30,42 @@
                         {% if memo.article %}
                             {% if memo.article.event.get_category_display == '정치'%}
                                 <li class="politics">
-                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-danger text-white" id="exampleModalLongTitle">{{ memo.article.event }}</h6>
-                                    {{ memo.article.title }}
+                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-danger text-white">{{ memo.article.event }}</h6>
+                                    <div class="text-secondary">{{ memo.article.title }}</div>
                             {% elif memo.article.event.get_category_display == '경제'%}
                                 <li class="economics">
-                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-success text-white" id="exampleModalLongTitle">{{ memo.article.event }}</h6>
-                                    {{ memo.article.title }}
+                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-success text-white">{{ memo.article.event }}</h6>
+                                    <div class="text-secondary">{{ memo.article.title }}</div>
                             {% elif memo.article.event.get_category_display == '사회'%}
                                 <li class="society">
-                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-warning text-white" id="exampleModalLongTitle">{{ memo.article.event }}</h6>
-                                    {{ memo.article.title }}
+                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-warning text-white">{{ memo.article.event }}</h6>
+                                    <div class="text-secondary">{{ memo.article.title }}</div>
                             {% elif memo.article.event.get_category_display == '세계'%}
                                 <li class="world">
-                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-violet text-white" id="exampleModalLongTitle">{{ memo.article.event }}</h6>
-                                    {{ memo.article.title }}
+                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-violet text-white">{{ memo.article.event }}</h6>
+                                    <div class="text-secondary">{{ memo.article.title }}</div>
                             {% endif %}
-                                    <p class="float-right text-secondary memo-create-at">{{ memo.created_at|date_only }}</p>
-                                    <p><a href="{% url 'memo' memo.id %}">{{ memo.title }}</a></p>
+                                    <p class="float-right memo-create-at">{{ memo.created_at|date_only }}</p>
+                                    <span class="text-secondary">memo: </span><a class="text-black" href="{% url 'memo' memo.id %}">{{ memo.title }}</a>
                                 </li>
-                        {% endif %}
 
-                        {% if memo.issue %}
-                            <li>
-                            # {{ memo.issue.title }}
-                            </li>
+                        {% elif memo.issue %}
+                            {% if memo.issue.categories|index:0 == 'POL' %}
+                                <li class="politics">
+                                    <h6 class="issue d-block p-1 pl-2 pr-2 rounded text-truncate border-danger">{{ memo.issue.title }}</h6>
+                            {% elif memo.issue.categories|index:0 == 'ECON' %}
+                                <li class="economics">
+                                    <h6 class="issue d-block p-1 pl-2 pr-2 rounded text-truncate border-success">{{ memo.issue.title }}</h6>
+                            {% elif memo.issue.categories|index:0 == 'SOC' %}
+                                <li class="economics">
+                                    <h6 class="issue d-block p-1 pl-2 pr-2 rounded text-truncate border-warning">{{ memo.issue.title }}</h6>
+                            {% elif memo.issue.categories|index:0 == 'WRD' %}
+                                <li class="economics">
+                                    <h6 class="issue d-block p-1 pl-2 pr-2 rounded text-truncate border-violet">{{ memo.issue.title }}</h6>
+                            {% endif %}
+                                    <p class="float-right memo-create-at">{{ memo.created_at|date_only }}</p>
+                                    <span class="text-secondary">memo: </span><a class="text-black" href="{% url 'memo' memo.id %}">{{ memo.title }}</a>
+                                </li>
                         {% endif %}
 
                         {% comment %} <li>
