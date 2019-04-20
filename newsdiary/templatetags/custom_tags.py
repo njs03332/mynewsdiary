@@ -12,6 +12,10 @@ def length(QuerySet):
     return QuerySet.count()
 
 @register.filter
+def days_left(Event):
+    return (Event.datetime.date() - datetime.today().date()).days
+
+@register.filter
 def events(Issue):
     return Issue.events.all()
 

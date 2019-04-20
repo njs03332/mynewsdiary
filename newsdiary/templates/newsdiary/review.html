@@ -2,14 +2,103 @@
 
 {% block content %}
 {% load custom_tags %}
+{% load staticfiles %}
 
-{% for article in articles %}
-    <strong># </strong> {{ article.event.title }}
-    <a href="{% url 'unfollow' article.event.id %}?next={{request.path}}">
-        <i class="fas fa-star"></i>
-        {% comment %} <i class="material-icons">star</i> {% endcomment %}
-    </a> | {{ article.event.followers|length }} followers <br>
-    <a href="{% url 'article' article.id %}">{{ article.title }}</a><br>
-    {{ article.press }} | {{ article.created_at }}<br>
-{% endfor %}
+<div class="container-fluid">
+    <nav class="navbar fixed-top navbar-light bg-light justify-content-center">
+        <h4 class="month mb-4 text-center">{{ view.year }}년 {{ view.month }}월 {{ view.day }}일</h4>
+    </nav>
+
+<div class="section-title">팔로우하는 일정</div>
+<hr>
+    {% for article in articles %}
+    {% with event=article.event %}
+        <a href="{% url 'article' article.id %}">
+            <div class="article-box shadow-sm p-2 bg-white rounded">
+                <div class="image-box">
+                    <img src="{% static 'img/protest.jpg' %}">
+                </div>
+                <div class="article-content-box">
+                    <div class="article-header">
+                        <div class="article-header-left">
+                            {% if event.get_category_display == '정치' %}
+                                <a class="event p-1 rounded small bg-danger text-white" >
+                                {{ event.title }}</a>
+                            {% elif event.get_category_display == '사회' %}
+                                <a class="event p-1 rounded small bg-warning text-white" >
+                                {{ event.title }}</a>
+                            {% elif event.get_category_display == '경제' %}
+                                <a class="event p-1 rounded small bg-success text-white" >
+                                {{ event.title }}</a>
+                            {% elif event.get_category_display == '세계' %}
+                                <a class="event p-1 rounded small bg-violet text-white" >
+                                {{ event.title }}</a>
+                            {% endif %}
+                        </div>
+                        <div class="article-header-right">
+                            <span class="d-day">&nbsp;{{ event|days_left }}일 후</span>
+                        </div>
+                    </div>
+
+                    <div class="article-box-title">
+                        {{ article.title }}
+                    </div>
+                    <div class="article-box-footer">
+                        <img src="http://im.mediatoday.co.kr/logo/logo.png" style="width: 50px; margin-left: 3px; margin-bottom: 5px;"/>
+                        {{ article.created_at }}
+                    </div>
+                </div>
+            </div>
+        </a>
+    {% endwith %}
+    {% endfor %}
+
+<br>
+<div class="section-title">이런 일도 있었어요</div>
+<hr>
+    {% for article in view.other_articles %}
+    {% with article=event.article %}
+            <a href="{% url 'article' article.id %}">
+                <div class="article-box shadow-sm p-2 bg-white rounded">
+                    <div class="image-box">
+                        <img src="{% static 'img/protest.jpg' %}">
+                    </div>
+                    <div class="article-content-box">
+                        <div class="article-header">
+                            <div class="article-header-left">
+                                {% if event.get_category_display == '정치' %}
+                                    <a class="event p-1 rounded small bg-danger text-white" >
+                                    {{ event.title }}</a>
+                                {% elif event.get_category_display == '사회' %}
+                                    <a class="event p-1 rounded small bg-warning text-white" >
+                                    {{ event.title }}</a>
+                                {% elif event.get_category_display == '경제' %}
+                                    <a class="event p-1 rounded small bg-success text-white" >
+                                    {{ event.title }}</a>
+                                {% elif event.get_category_display == '세계' %}
+                                    <a class="event p-1 rounded small bg-violet text-white" >
+                                    {{ event.title }}</a>
+                                {% endif %}
+                                <a href="{% url 'follow' event.id %}?next={{request.path}}">
+                                    <i class="far fa-star"></i>
+                                </a> 
+                                <span class="follower-number">{{ event.followers|length }} followers</span>
+                            </div>
+                            <div class="article-header-right">
+                                <span class="d-day">&nbsp;{{ event|days_left }}일 후</span>
+                            </div>
+                        </div>
+                        <div class="article-box-title">
+                            {{ article.title }}
+                        </div>
+                        <div class="article-box-footer">
+                            <img src="http://im.mediatoday.co.kr/logo/logo.png" style="width: 50px; margin-left: 3px; margin-bottom: 5px;"/>
+                            {{ article.created_at }}
+                        </div>
+                    </div>
+                </div>
+            </a>
+    {% endwith %}
+    {% endfor %}
+</div>
 {% endblock content %}
