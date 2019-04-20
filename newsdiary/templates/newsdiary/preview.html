@@ -14,7 +14,7 @@
     {% for event in events %}
         {% with article=event.articles.first %}
             <a href="{% url 'article' article.id %}">
-                <div class="article-box shadow-sm p-2 bg-white rounded">
+                <div class="article-box shadow-sm bg-white">
                     <div class="image-box">
                         <img src="{% static 'img/protest.jpg' %}">
                     </div>
@@ -35,8 +35,8 @@
                                     {{ event.title }}</a>
                                 {% endif %}
                             </div>
-                            <div class="article-header-right">
-                                <span class="d-day">&nbsp;{{ event|days_left }}일 후</span>
+                            <div>
+                                <span class="badge bg-secondary text-white">&nbsp;D{{ event|days_left }}</span>
                             </div>
                         </div>
 
@@ -80,7 +80,7 @@
                                     <a class="event p-1 rounded small bg-violet text-white" >
                                     {{ event.title }}</a>
                                 {% endif %}
-                                <a href="{% url 'follow' event.id %}?next={{request.path}}">
+                                <a style="text-decoration: none;"  href="{% url 'follow' event.id %}?next={{request.path}}">
                                     <i class="far fa-star"></i>
                                 </a> 
                                 <span class="follower-number">{{ event.followers|length }} followers</span>

@@ -81,6 +81,7 @@
                                 {% endif %}
                                 {{event.id}}
                                 {% comment %} <a href="{% url 'follow' event.id %}?next={{request.path}}">
+                                <a style="text-decoration: none;" href="{% url 'follow' event.id %}?next={{request.path}}">
                                     <i class="far fa-star"></i>
                                 </a>  {% endcomment %}
                                 {% comment %} <span class="follower-number">{{ event.followers|length }} followers</span> {% endcomment %}
