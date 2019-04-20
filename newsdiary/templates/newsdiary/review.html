@@ -35,8 +35,7 @@
                                 {{ event.title }}</a>
                             {% endif %}
                         </div>
-                        <div class="article-header-right">
-                            <span class="d-day">&nbsp;{{ event|days_left }}일 후</span>
+                        <div>
                         </div>
                     </div>
 
@@ -79,15 +78,8 @@
                                     <a class="event p-1 rounded small bg-violet text-white" >
                                     {{ event.title }}</a>
                                 {% endif %}
-                                {{event.id}}
-                                {% comment %} <a href="{% url 'follow' event.id %}?next={{request.path}}">
-                                <a style="text-decoration: none;" href="{% url 'follow' event.id %}?next={{request.path}}">
-                                    <i class="far fa-star"></i>
-                                </a>  {% endcomment %}
-                                {% comment %} <span class="follower-number">{{ event.followers|length }} followers</span> {% endcomment %}
                             </div>
-                            <div class="article-header-right">
-                                <span class="d-day">&nbsp;{{ event|days_left }}일 후</span>
+                            <div>
                             </div>
                         </div>
                         <div class="article-box-title">

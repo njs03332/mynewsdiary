@@ -89,16 +89,20 @@ class ArticleDetailView(DetailView):
     def first_article(self):
         return Article.objects.first().id
 
+    def next_article(self):
+        return Article.objects.first().id + 1
+
 class PreviewView(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     template_name = 'newsdiary/preview.html'
     context_object_name = 'events'
 
     def get_queryset(self):
-        return self.request.user.following_events.all()
+        events = Event.objects.filter(title="WTO 판결") | Event.objects.filter(title="브렉시트") | Event.objects.filter(title="한국당 이미선 고발")
+        return events
 
     def other_events(self):
-        return Event.objects.exclude(followers=self.request.user)
+        return Event.objects.filter(title="바른미래당 회의")
 
     def year(self):
         return datetime.datetime.today().year
@@ -107,7 +111,7 @@ class PreviewView(LoginRequiredMixin, ListView):
         return datetime.datetime.today().month
 
     def day(self):
-        return datetime.datetime.today().day
+        return datetime.datetime(2019,4,11).day
 
 class ReviewView(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
@@ -116,8 +120,9 @@ class ReviewView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         # 오늘 기사 중에, 사용자가 팔로우하고 있는 일정에 대한 기사들
-        today = Article.objects.filter(created_at__date=datetime.date.today())
-        return today.filter(event__followers=self.request.user)
+        # today = Article.objects.filter(created_at__date=datetime.date.today())
+        # return today.filter(event__followers=self.request.user)
+        return Article.objects.filter(title="후쿠시마 수산물 계속 못 들어온다…한국, WTO 분쟁서 승소")
 
     def other_articles(self):
         today = Article.objects.filter(created_at__date=datetime.date.today())
@@ -130,7 +135,7 @@ class ReviewView(LoginRequiredMixin, ListView):
         return datetime.datetime.today().month
 
     def day(self):
-        return datetime.datetime(2019,4,11).day
+        return datetime.datetime(2019,4,12).day
 
 def follow(request, pk):
     event = Event.objects.get(id=pk)
