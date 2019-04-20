@@ -13,7 +13,8 @@
 .article-box {
   margin: 5px 0;
   display: grid;
-  grid-template-columns: 30% 70%; }
+  grid-template-columns: 30% 70%;
+  padding: 10px; }
 
 .section-title {
   width: 100%;

@@ -13,7 +13,7 @@
   text-overflow: inherit; }
 
 .today-date-badge {
-  background: linear-gradient(#36D1DC, #5B86E5); }
+  background: #009245; }
 
 table {
   table-layout: fixed; }
@@ -39,7 +39,7 @@ table {
   .day {
     height: 29vw !important; }
   .today-date-badge {
-    background: linear-gradient(45deg, #36D1DC, #5B86E5);
+    background: #009245;
     padding-left: 0;
     padding-right: .3rem; }
   .date {
