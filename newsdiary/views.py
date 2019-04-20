@@ -74,7 +74,7 @@ class CalendarView(LoginRequiredMixin, ListView):
         return datetime.datetime(self.year(), self.month(), monthrange(self.year(), self.month())[1]).weekday()
 
     def today(self):
-        return datetime.datetime.today().day
+        return datetime.datetime(2019,4,11).day
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
@@ -130,7 +130,7 @@ class ReviewView(LoginRequiredMixin, ListView):
         return datetime.datetime.today().month
 
     def day(self):
-        return datetime.datetime.today().day
+        return datetime.datetime(2019,4,11).day
 
 def follow(request, pk):
     event = Event.objects.get(id=pk)
