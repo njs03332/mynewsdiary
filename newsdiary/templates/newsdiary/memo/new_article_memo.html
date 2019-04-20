@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action="{% url 'new_a' view.article.id %}" method="POST">  
+
+<div class="container-fluid">
+    <nav class="navbar fixed-top navbar-light bg-light justify-content-center">
+        <h4 class="month mb-4 text-center">새로운 메모</h4>
+    </nav>
+    <h5><strong>{{ view.article.title }}</strong> 기사에 대한 메모</h5>
+    <form action="{% url 'new_a' view.article.id %}" method="POST">
         {% csrf_token %}
-        <p>제목</p>
-        <input name="title" /> <br />
-        <strong>{{ view.article.title }}</strong> 기사에 대한 메모
-        <p>내용</p>
-        <input name="content" /> <br />
-        <input type="submit" value="submit" />
+        <div class="form-group">
+            <input name="title" class="form-control" placeholder="제목"/>
+        </div>
+        <div class="form-group">
+            <textarea name="content" placeholder="메모 내용" class="form-control" rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn mnd-color text-white justfy-content-center">저장</button>
     </form>
+</div>
 {% endblock content %}
