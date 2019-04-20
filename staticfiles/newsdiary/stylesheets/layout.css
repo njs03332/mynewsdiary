@@ -1,6 +1,10 @@
 .mnd-color {
   background: linear-gradient(45deg, #36D1DC, #5B86E5); }
 
+a {
+  color: darkgray !important;
+  text-decoration: none; }
+
 .navbar {
   padding: 1.3rem !important; }
 

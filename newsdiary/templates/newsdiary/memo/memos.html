@@ -26,17 +26,49 @@
             <div class="col-md-6 offset-md-3">
                 <ul class="timeline">
                     {% for memo in memos %}
-                        <li>
+
+                        {% if memo.article %}
+                            {% if memo.article.event.get_category_display == '정치'%}
+                                <li class="politics">
+                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-danger text-white" id="exampleModalLongTitle">{{ memo.article.event }}</h6>
+                                    {{ memo.article.title }}
+                            {% elif memo.article.event.get_category_display == '경제'%}
+                                <li class="economics">
+                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-success text-white" id="exampleModalLongTitle">{{ memo.article.event }}</h6>
+                                    {{ memo.article.title }}
+                            {% elif memo.article.event.get_category_display == '사회'%}
+                                <li class="society">
+                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-warning text-white" id="exampleModalLongTitle">{{ memo.article.event }}</h6>
+                                    {{ memo.article.title }}
+                            {% elif memo.article.event.get_category_display == '세계'%}
+                                <li class="world">
+                                    <h6 class="d-block p-1 pl-2 pr-2 rounded text-truncate bg-violet text-white" id="exampleModalLongTitle">{{ memo.article.event }}</h6>
+                                    {{ memo.article.title }}
+                            {% endif %}
+                                    <p class="float-right text-secondary memo-create-at">{{ memo.created_at|date_only }}</p>
+                                    <p><a href="{% url 'memo' memo.id %}">{{ memo.title }}</a></p>
+                                </li>
+                        {% endif %}
+
+                        {% if memo.issue %}
+                            <li>
+                            # {{ memo.issue.title }}
+                            </li>
+                        {% endif %}
+
+                        {% comment %} <li>
                             <a target="_blank" href="https://www.totoprayogo.com/#">
                                 {% if memo.issue %}
                                     # {{ memo.issue.title }}
                                 {% elif memo.article %}
                                     {{ memo.article.title }}
+                                    {{ memo.article.event }}
                                 {% endif %}
                             </a>
+
                             <a href="#" class="float-right">{{ memo.created_at|date_only }}</a>
                             <p><a href="{% url 'memo' memo.id %}">{{ memo.title }}</a></p>
-                        </li>
+                        </li> {% endcomment %}
                     {% endfor %}
                 </ul>
             </div>
